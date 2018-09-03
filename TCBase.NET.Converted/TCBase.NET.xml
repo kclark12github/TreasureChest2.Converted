@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TCBase.NET</name>
+    </assembly>
+    <members>
+        <member name="M:TCBase.clsString.InStrMX(System.Int32,System.String,System.String,Microsoft.VisualBasic.CompareMethod)">
+            <summary>This function works just like InStr() except it returns the first occurrence of any character in the SearchSet instead of the occurrence of that string as a whole</summary>
+        </member>
+        <member name="M:TCBase.clsString.ParseStr(System.String,System.String,System.String)">
+            <summary>Parses a given string by delimiter</summary>
+            <param name="Source">String to work on</param>
+            <param name="Delimiter">Token delimiter</param>
+            <param name="Encapsulator">Optional: Allows for tokens to return strings encapsulated with "Delimiter" characters</param>
+            <returns>Returns string array</returns>
+        </member>
+        <member name="M:TCBase.clsString.ParseStr(System.String,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>Retrieve specified token of string</summary>
+            <param name="Source">String to work on</param>
+            <param name="TokenNum">Returns specified token in string</param>
+            <param name="Delimiter">Token delimiter</param>
+            <param name="Encapsulator">Optional: Allows for tokens to return strings encapsulated with "Delimiter" characters</param>
+            <param name="Preserve">Optional: Preserves encapsulating characters when token is encapsulated</param>
+            <returns>Returns string token.  If none is found, will return ""</returns>
+        </member>
+        <member name="M:TCBase.clsString.OldParseStr(System.String,System.Int16,System.String,System.String)">
+            <summary>Retrieve specified token of string</summary>
+            <param name="strWork">String to work on</param>
+            <param name="intTokenNum">Returns specified token in string</param>
+            <param name="strDelimitChr">Token delimiter</param>
+            <param name="strEncapChr">Optional: Allows for tokens to return strings encapsulated with "strDelimitChr" characters</param>
+            <returns>Returns string token.  If none is found, will return ""</returns>
+        </member>
+        <member name="M:TCBase.clsString.TokenCount(System.String,System.String,System.String)">
+            <summary>Counts number of tokens in a string</summary>
+            <param name="Source">String to work on</param>
+            <param name="Delimiter">String Delimiter</param>
+            <param name="Encapsulator">Optional: Allows for tokens to return strings encapsulated with "strDelimiter" characters</param>
+            <returns>Number of tokens found</returns>
+        </member>
+        <member name="T:TCBase.clsTCBase">
+            <summary>
+            TreasureChest2 Application Base Class
+            </summary>
+            <remarks>Contains all the underlying support objects and forms to support each of the specific components managed by this application.</remarks>
+        </member>
+        <member name="M:TCBase.clsTCBase.BuildConnectionString(System.String,System.String@,System.String)">
+            <summary>
+            Builds a ODBC-compliant connection string based on the given parameters
+            </summary>
+            <param name="DSN">File DSN representing the preconfigured connection to the desired database</param>
+            <param name="UserName">User name credential used to make the connection</param>
+            <param name="Password">Password credential used to make the connection</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:TCBase.clsTCBase.CloseConnection">
+            <summary>
+            Closes the current connection
+            </summary>
+        </member>
+        <member name="M:TCBase.clsTCBase.OpenConnection(System.String,System.String)">
+            <summary>
+            Opens a connection to the given database
+            </summary>
+            <param name="UserName">User name credential used to make the connection</param>
+            <param name="Password">Password credential used to make the connection</param>
+        </member>
+    </members>
+</doc>
