@@ -197,7 +197,11 @@ namespace TCBase
 		protected internal StatusBarPanel sbpTime;
 		protected internal StatusBarPanel sbpEndBorder;
 		protected internal Label lblID;
-		private ToolBar withEventsField_tbMain;
+        protected internal StatusStrip StatusStrip1;
+        protected internal ToolStripStatusLabel tsslblRows;
+        protected internal ToolStripStatusLabel tsslblRowFilter;
+        protected internal ToolStripStatusLabel tsslblSort;
+        private ToolBar withEventsField_tbMain;
 		private ToolBar tbMain {
 			get { return withEventsField_tbMain; }
 			set {
@@ -568,7 +572,11 @@ namespace TCBase
             this.mnuRecordsSort = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsList = new System.Windows.Forms.MenuItem();
 			this.mnuFileTrace = new System.Windows.Forms.MenuItem();
-			((System.ComponentModel.ISupportInitialize)this.epBase).BeginInit();
+            this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslblRows = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblRowFilter = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblSort = new System.Windows.Forms.ToolStripStatusLabel();
+            ((System.ComponentModel.ISupportInitialize)this.epBase).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpPosition).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpMode).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpFilter).BeginInit();
@@ -583,7 +591,8 @@ namespace TCBase
 			((System.ComponentModel.ISupportInitialize)this.pbGeneral2).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.pbGeneral).BeginInit();
 			this.tpNotes.SuspendLayout();
-			this.SuspendLayout();
+            this.StatusStrip1.SuspendLayout();
+            this.SuspendLayout();
 			//
 			//imgBase
 			//
@@ -944,7 +953,8 @@ namespace TCBase
 			this.imgToolbar.Images.SetKeyName(11, "");
 			this.imgToolbar.Images.SetKeyName(12, "");
             this.imgToolbar.Images.SetKeyName(13, "Sort.ico");
-			//tcMain
+			//
+            //tcMain
 			//
 			this.tcMain.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
 			this.tcMain.Controls.Add(this.tpGeneral);
@@ -1432,10 +1442,45 @@ namespace TCBase
 			//
 			this.mnuFileTrace.Index = -1;
 			this.mnuFileTrace.Text = "&Trace";
-			//
-			//frmTCStandard
-			//
-			this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+            //
+            //StatusStrip1
+            //
+            this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsslblRows, this.tsslblRowFilter, this.tsslblSort });
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 244);
+            this.StatusStrip1.Name = "StatusStrip1";
+            this.StatusStrip1.Size = new System.Drawing.Size(444, 22);
+            this.StatusStrip1.TabIndex = 1;
+            this.StatusStrip1.Text = "StatusStrip1";
+            //
+            //tsslblRows
+            //
+            this.tsslblRows.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this.tsslblRows.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsslblRows.Name = "tsslblRows";
+            this.tsslblRows.Size = new System.Drawing.Size(47, 17);
+            this.tsslblRows.Text = "Rows: 0";
+            //
+            //tsslblRowFilter
+            //
+            this.tsslblRowFilter.AutoToolTip = true;
+            this.tsslblRowFilter.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this.tsslblRowFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsslblRowFilter.Name = "tsslblRowFilter";
+            this.tsslblRowFilter.Size = new System.Drawing.Size(62, 17);
+            this.tsslblRowFilter.Text = "RowFilter: ";
+            //
+            //tsslblSort
+            //
+            this.tsslblSort.AutoToolTip = true;
+            this.tsslblSort.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this.tsslblSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsslblSort.Name = "tsslblSort";
+            this.tsslblSort.Size = new System.Drawing.Size(31, 17);
+            this.tsslblSort.Text = "Sort:";
+            //
+            //frmTCStandard
+            //
+            this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
 			this.ClientSize = new System.Drawing.Size(296, 266);
 			this.Controls.Add(this.btnLast);
 			this.Controls.Add(this.btnFirst);
@@ -1450,6 +1495,7 @@ namespace TCBase
 			this.Controls.Add(this.tcMain);
 			this.Controls.Add(this.btnExit);
 			this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.StatusStrip1);
 			this.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
 			this.KeyPreview = true;
 			this.Menu = this.mnuMain;
@@ -1471,7 +1517,9 @@ namespace TCBase
 			((System.ComponentModel.ISupportInitialize)this.pbGeneral2).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.pbGeneral).EndInit();
 			this.tpNotes.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.StatusStrip1.ResumeLayout(false);
+            this.StatusStrip1.PerformLayout();
+            this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
@@ -2164,9 +2212,10 @@ namespace TCBase
 				mTCBase.GenericErrorHandler(ex, true);
 			}
 		}
-		protected virtual void Form_Load(object sender, System.EventArgs e)
+		protected override void Form_Load(object sender, System.EventArgs e)
 		{
-			if (DesignMode)
+            base.Form_Load(sender, e);
+            if (DesignMode)
 				return;
 			mnuMain.MenuItems.Clear();
 			mnuFile = mnuMain.MenuItems.Add("&File");

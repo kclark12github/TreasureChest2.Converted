@@ -1,3 +1,31 @@
+//frmList.vb
+//   List Form...
+//   Copyright © 1998-2018, Ken Clark
+//*********************************************************************************************************************************
+//
+//   Modification History:
+//   Date:       Description:
+//   12/21/17    Addressed CurrencyManager synchronization issue introduced by image processing (RemoveImage) that had caused 
+//               tcDataView_ListChanged to fire after moving to the new row while cleaning up image memory used by the old row;
+//   06/09/17    Addressed NullReferenceException in dgList_CurrentCellChanged;
+//   10/01/16    Implemented DataGridView;
+//   09/18/16    Updated object references to reflect architectural changes;
+//   10/19/14    Upgraded to VS2013;
+//   10/22/11    Added Return/Escape/Enter KeyUp handling to close screen;
+//   09/18/10    Added logic to save column widths;
+//   07/26/10    Reorganized registry settings;
+//   11/28/09    Migrated to VB.NET;
+//   12/28/07    Corrected sorting by setting .Layout.Override.FetchRows = ssFetchRowsPreloadWithParent in
+//               ssugList_InitializeLayout;
+//   10/14/02    Added Error Handling;
+//   10/13/02    Refitted for use in TreasureChest;
+//=================================================================================================================================
+//Notes:
+//   - Add error handling...
+//   - Column sizing... Especially ID column...
+//   - Currency column formatting...
+//   - Fully Test...
+//=================================================================================================================================
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.Win32;
@@ -34,34 +62,6 @@ using static TCBase.clsTrace;
 using static TCBase.clsUI;
 namespace TCBase
 {
-	//frmList.vb
-	//   List Form...
-	//   Copyright © 1998-2018, Ken Clark
-	//*********************************************************************************************************************************
-	//
-	//   Modification History:
-	//   Date:       Description:
-	//   12/21/17    Addressed CurrencyManager synchronization issue introduced by image processing (RemoveImage) that had caused 
-	//               tcDataView_ListChanged to fire after moving to the new row while cleaning up image memory used by the old row;
-	//   06/09/17    Addressed NullReferenceException in dgList_CurrentCellChanged;
-	//   10/01/16    Implemented DataGridView;
-	//   09/18/16    Updated object references to reflect architectural changes;
-	//   10/19/14    Upgraded to VS2013;
-	//   10/22/11    Added Return/Escape/Enter KeyUp handling to close screen;
-	//   09/18/10    Added logic to save column widths;
-	//   07/26/10    Reorganized registry settings;
-	//   11/28/09    Migrated to VB.NET;
-	//   12/28/07    Corrected sorting by setting .Layout.Override.FetchRows = ssFetchRowsPreloadWithParent in
-	//               ssugList_InitializeLayout;
-	//   10/14/02    Added Error Handling;
-	//   10/13/02    Refitted for use in TreasureChest;
-	//=================================================================================================================================
-	//Notes:
-	//   - Add error handling...
-	//   - Column sizing... Especially ID column...
-	//   - Currency column formatting...
-	//   - Fully Test...
-	//=================================================================================================================================
 	public class frmList : TCBase.frmTCBase
 	{
 		public frmList(clsSupport objSupport, clsTCBase objTCBase, Form objParent, string Caption, DataView DataSource, int Position, bool AllowUpdate, string KeyField) : base(objSupport, "frmList", objTCBase, objParent)
