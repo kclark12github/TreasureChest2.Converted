@@ -1,0 +1,8 @@
+storage.ide
+*.ide
+sqlite3/
+bin/
+obj/
+packages/
+.vs/
+

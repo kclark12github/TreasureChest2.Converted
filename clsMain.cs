@@ -28,7 +28,7 @@ namespace TreasureChest2
 {
 	public class clsMain : clsTCBase
 	{
-		public clsMain() : base(new clsSupport(null), "clsMain")
+		public clsMain() : base(new clsSupport(null, "TreasureChest2"), "clsMain")
 		{
 			try {
 				Trace("clsMain.New()", trcOption.trcApplication);

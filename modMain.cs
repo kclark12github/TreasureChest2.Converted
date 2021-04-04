@@ -58,7 +58,7 @@ namespace TreasureChest2
 			clsMain objMain = null;
 			bool fUnattended = false;
 			try {
-				objSupport = new clsSupport(null);
+				objSupport = new clsSupport(null, "TreasureChest2");
 				string RegistryKey = string.Format("Software\\KClark Software\\{0}", objSupport.ApplicationName);
 				objSupport.Trace.TraceMode = Convert.ToBoolean(objSupport.Registry.GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, RegistryKey, "TraceMode", false));
 				objSupport.Trace.TraceFile = (string)objSupport.Registry.GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, RegistryKey, "TraceFile", string.Format("{0}\\{1}.trace", objSupport.ApplicationPath, objSupport.ApplicationName));
