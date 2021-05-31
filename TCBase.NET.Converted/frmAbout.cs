@@ -57,7 +57,7 @@ namespace TCBase
 			//This call is required by the Windows Form Designer.
 			InitializeComponent();
 			this.Icon = objParent.Icon;
-			this.Text = "Help About " + mSupport.ApplicationName;
+			this.Text = "Help About " + mSupport.ApplicationName + "C#";
 		}
 		#region " Windows Form Designer generated code "
 
@@ -509,7 +509,7 @@ namespace TCBase
 		private void frmAbout_Load(object sender, System.EventArgs e)
 		{
 			try {
-				this.lblTitle.Text = mSupport.ApplicationName;
+				this.lblTitle.Text = mSupport.ApplicationName + "C#";
 				this.lblVersion.Text = "Version " + mSupport.ApplicationVersion;
 				this.lblDescription.Text = bpeNullString;
 			} catch (Exception ex) {

@@ -1022,13 +1022,13 @@ namespace TreasureChest2
 				this.lblDatabase.Text = (mTCBase.ConnectionString != bpeNullString ? string.Format("{0}.{1}", mTCBase.ServerName, mTCBase.DatabaseName) : mTCBase.DatabaseName);
 				if ((mTCBase.FileDSN == bpeNullString && mTCBase.ConnectionString == bpeNullString) || mTCBase.UserID == bpeNullString || mTCBase.Password == bpeNullString)
 					mnuFileOptions_Click(null, null);
-				this.Text = string.Format("{0} [DB: {1}]", mSupport.ApplicationName, (mTCBase.DatabaseName == bpeNullString ? "Not Connected" : string.Format("{0}.{1}", mTCBase.ServerName, mTCBase.DatabaseName)));
+				this.Text = string.Format("{0} [DB: {1}]", mSupport.ApplicationName+"C#", (mTCBase.DatabaseName == bpeNullString ? "Not Connected" : string.Format("{0}.{1}", mTCBase.ServerName, mTCBase.DatabaseName)));
 				if (fActivated)
 					throw new ExitTryException();
 				fActivated = true;
 				this.Cursor = Cursors.WaitCursor;
 				this.sbpVersion.Text = string.Format("Version {0}", mSupport.ApplicationVersion);
-				mnuHelpAbout.Text = string.Format("About &{0}...", mSupport.ApplicationName);
+				mnuHelpAbout.Text = string.Format("About &{0}...", mSupport.ApplicationName + "C#");
 				this.Cursor = Cursors.Default;
             } catch (ExitTryException) { 
             } catch (Exception ex) {
