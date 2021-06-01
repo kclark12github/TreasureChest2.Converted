@@ -74,7 +74,7 @@ namespace TCBase
 			Shown += frmMsgBox_Shown;
 			//This call is required by the Windows Form Designer.
 			InitializeComponent();
-			if (TCBase.MyComputer.Screen.Bounds.Width > 640 && TCBase.MyComputer.Screen.Bounds.Height > 480) {
+			if (mTCBase.MyComputer.Screen.Bounds.Width > 640 && mTCBase.MyComputer.Screen.Bounds.Height > 480) {
 				this.MaximumSize = new Size(800, 600);
 			} else {
 				//Size the form to VGA Minimums...

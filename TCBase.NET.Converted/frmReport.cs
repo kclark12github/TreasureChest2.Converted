@@ -1,3 +1,23 @@
+//frmReport.cs
+//   Report Viewer Form...
+//   Copyright © 1998-2021, Ken Clark
+//*********************************************************************************************************************************
+//
+//   Modification History:
+//   Date:       Description:
+//TODO:   05/28/21    Updated to support screen size & location user preferences;
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//TODO:   07/21/19    Changed form positioning from being independent to being centered on the parent form;
+//   07/26/10    Reorganized registry settings;
+//   07/25/10    Resized and defaulted to (0,0) if no saved location information is in registry;
+//   11/28/09    Migrated to VB.NET;
+//   10/19/02    Added Filter Support;
+//   10/14/02    Added Error Handling;
+//   10/13/02    Refitted for use in TreasureChest;
+//=================================================================================================================================
+//Notes:
+//=================================================================================================================================
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.Win32;
@@ -32,22 +52,6 @@ using static TCBase.clsSupport;
 using static TCBase.clsTCBase;
 using static TCBase.clsTrace;
 using static TCBase.clsUI;
-//frmReport,vb
-//   Report Viewer Form...
-//   Copyright © 1998-2018, Ken Clark
-//*********************************************************************************************************************************
-//
-//   Modification History:
-//   Date:       Description:
-//   07/26/10    Reorganized registry settings;
-//   07/25/10    Resized and defaulted to (0,0) if no saved location information is in registry;
-//   11/28/09    Migrated to VB.NET;
-//   10/19/02    Added Filter Support;
-//   10/14/02    Added Error Handling;
-//   10/13/02    Refitted for use in TreasureChest;
-//=================================================================================================================================
-//Notes:
-//=================================================================================================================================
 using CrystalDecisions.CrystalReports.Engine;
 namespace TCBase
 {
@@ -148,6 +152,7 @@ namespace TCBase
 			int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", 0);
 			int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", Convert.ToInt32(Screen.PrimaryScreen.Bounds.Width));
 			int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height));
+			base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
 			this.SetBounds(iLeft, iTop, iWidth, iHeight);
 		}
 		private void frmReport_Closing(object sender, System.ComponentModel.CancelEventArgs e)

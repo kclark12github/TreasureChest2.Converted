@@ -1,10 +1,17 @@
-//frmTCBase.vb
+//frmTCBase.cs
 //   Base Form for TreasureChest2 Project...
-//   Copyright © 1998-2018, Ken Clark
+//   Copyright © 1998-2021, Ken Clark
 //*********************************************************************************************************************************
 //
 //   Modification History:
 //   Date:       Description:
+//   05/12/21    Updated BindControl for binding ComboBox controls to underlying DataView to be fault-tolerant, meaning such
+//               conditions are now ignored if the binding is already set to the requested DataSource/DataMember, otherwise the
+//               binding is removed and reattempted;
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//   07/08/19    Moved ttBase (ToolTip) from frmTCStandard into base class;
+//   09/01/18    Implemented ResizeControl functionality;
 //   04/21/18    Added DataGridView Support;
 //   04/10/18    Finally implemented context menu for RichTextBox controls missing since upgrading to VB.NET;
 //   04/09/18    Updated logic to only consider ComboBox.SelectionStart/Length if DropDownStyle <> ComboBoxStyle.DropDownList as
@@ -25,7 +32,7 @@
 //               them here in an effort to release memory otherwise held forever;
 //   10/25/09    Created in VB.NET;
 //=================================================================================================================================
- // ERROR: Not supported in C#: OptionDeclaration
+// ERROR: Not supported in C#: OptionDeclaration
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.Win32;
@@ -113,6 +120,7 @@ namespace TCBase
 		}
 
 		protected ImageList imgBase;
+		protected internal ToolTip ttBase;
 		private ContextMenu withEventsField_ctxRTF;
 		protected ContextMenu ctxRTF {
 			get { return withEventsField_ctxRTF; }
@@ -319,6 +327,7 @@ namespace TCBase
 			this.mnuRTFContextMenuParagraphSep2 = new System.Windows.Forms.MenuItem();
 			this.mnuRTFContextMenuParagraphIndent = new System.Windows.Forms.MenuItem();
 			this.mnuRTFContextMenuParagraphUnindent = new System.Windows.Forms.MenuItem();
+			this.ttBase = new System.Windows.Forms.ToolTip(this.components);
 			this.dlgFont = new System.Windows.Forms.FontDialog();
 			((System.ComponentModel.ISupportInitialize)this.epBase).BeginInit();
 			this.SuspendLayout();
@@ -481,6 +490,10 @@ namespace TCBase
 			//
 			this.mnuRTFContextMenuParagraphUnindent.Index = 5;
 			this.mnuRTFContextMenuParagraphUnindent.Text = "&Unindent 0.25\"";
+			//
+			//ttBase
+			//
+			this.ttBase.ShowAlways = true;
 			//
 			//frmTCBase
 			//
@@ -773,6 +786,16 @@ namespace TCBase
 			}
 		}
 		#endregion
+		protected void AdjustFormPlacement(ref int iTop, ref int iLeft)
+		{
+			if (iTop < 0) iTop = 0;
+			if (iLeft < 0) {
+				iLeft = 0;
+			} 
+			else if (iLeft > mTCBase.MyComputer.Screen.Bounds.Left) {
+				iLeft -= mTCBase.MyComputer.Screen.Bounds.Left;
+			}
+		}
 		private bool AnythingHasChanged(object oldValue, object newValue)
 		{
 			bool functionReturnValue = false;
@@ -969,7 +992,23 @@ namespace TCBase
 						int maxLength = dataSource.Table.Columns[dataMember].MaxLength;
 						if (maxLength > 0)
 							_with2.MaxLength = maxLength;
-						_with2.DataBindings.Add("SelectedValue", dataSource, dataMember);
+						try {
+							_with2.DataBindings.Add("SelectedValue", dataSource, dataMember);
+						} catch (ArgumentException ex) {
+							Binding iBinding = _with2.DataBindings["SelectedValue"];
+							if (iBinding == null) throw;
+							//Check if we're already bound the way we want (It's OK)...
+							if (dataSource.Equals(iBinding.DataSource) && iBinding.BindingMemberInfo.BindingMember.Equals(dataMember)) return;
+
+							//If we're already bound to a different dataDource / dataMember, unbind and try again...
+							String Message = GetBindingInfo(iBinding);
+							if (!iBinding.DataSource.Equals(dataSource)) Message += "; dataSource does not match existing binding";
+							if (!iBinding.BindingMemberInfo.BindingMember.Equals(dataMember)) Message += "; dataMember does not match existing binding";
+							Message = ex.Message + "; " + Message;
+							Trace(Message, trcOption.trcBinding); if (!TraceMode) PrintOut(Message);
+							_with2.DataBindings.Remove(iBinding);
+							_with2.DataBindings.Add("SelectedValue", dataSource, dataMember);
+  						}
 						break;
 					default:
 						throw new Exception(string.Format("Unexpected control type ({0}) encountered in {1}(Control,DataView,String,String). Control: {2}", Information.TypeName(ctl), EntryName, ctl.Name));
@@ -997,8 +1036,25 @@ namespace TCBase
 				int maxLength = dataSource.Table.Columns[dataMember].MaxLength;
 				if (maxLength > 0)
 					_with3.MaxLength = maxLength;
-				_with3.DataBindings.Add(tmpBinding);
-			} catch (Exception ex) {
+				try {
+					_with3.DataBindings.Add(tmpBinding);
+				} catch (ArgumentException ex) {
+					Binding iBinding = _with3.DataBindings["SelectedValue"];
+					if (iBinding == null) throw;
+					//Check if we're already bound the way we want (It's OK)...
+					if (dataSource.Equals(iBinding.DataSource) && iBinding.BindingMemberInfo.BindingMember.Equals(dataMember)) return;
+
+					//If we're already bound to a different dataDource / dataMember, unbind and try again...
+					String Message = GetBindingInfo(iBinding);
+					if (!iBinding.DataSource.Equals(dataSource)) Message += "; dataSource does not match existing binding";
+					if (!iBinding.BindingMemberInfo.BindingMember.Equals(dataMember)) Message += "; dataMember does not match existing binding";
+					Message = ex.Message + "; " + Message;
+					Trace(Message, trcOption.trcBinding); if (!TraceMode) PrintOut(Message);
+					_with3.DataBindings.Remove(iBinding);
+					_with3.DataBindings.Add("SelectedValue", dataSource, dataMember);
+				}
+			}
+			catch (Exception ex) {
 				throw;
 			} finally {
 				Trace(trcType.trcExit, EntryName, trcOption.trcBinding | trcOption.trcControls);
@@ -1484,9 +1540,7 @@ namespace TCBase
 
 			Color BackColor = (Enable ? System.Drawing.SystemColors.Window : System.Drawing.SystemColors.Control);
 			switch (Information.TypeName(ctl)) {
-				case "Button":
-					((Button)ctl).Enabled = Enable;
-					break;
+				case "Button":		((Button)ctl).Enabled = Enable;	break;
 				case "CheckBox":
 					CheckBox cbx = (CheckBox)ctl;
 					cbx.Enabled = Enable;
@@ -1523,19 +1577,11 @@ namespace TCBase
 					dtp.CalendarMonthBackground = BackColor;
 					dtp.CalendarTitleBackColor = BackColor;
 					break;
-				case "Form":
-					((Form)ctl).Enabled = Enable;
-					break;
-				case "GroupBox":
-					EnableControls(((GroupBox)ctl).Controls, Enable, Clear);
-					break;
-				case "HScrollBar":
-					break;
-				case "Label":
-					break;
-				case "PictureBox":
-					((PictureBox)ctl).Enabled = Enable;
-					break;
+				case "Form":		((Form)ctl).Enabled = Enable;	break;
+				case "GroupBox":	EnableControls(((GroupBox)ctl).Controls, Enable, Clear);	break;
+				case "HScrollBar":	break;
+				case "Label":		break;
+				case "PictureBox":	((PictureBox)ctl).Enabled = Enable;	break;
 				case "RichTextBox":
 					RichTextBox rtf = (RichTextBox)ctl;
 					rtf.Enabled = true;
@@ -1543,14 +1589,10 @@ namespace TCBase
 					rtf.ReadOnly = !Enable;
 					rtf.BackColor = BackColor;
 					break;
-				case "StatusBar":
-					break;
-				case "TabControl":
-					EnableControls(((TabControl)ctl).Controls, Enable, Clear);
-					break;
-				case "TabPage":
-					EnableControls(((TabPage)ctl).Controls, Enable, Clear);
-					break;
+				case "StatusBar":	break;
+				case "StatusStrip": break;
+				case "TabControl":	EnableControls(((TabControl)ctl).Controls, Enable, Clear);	break;
+				case "TabPage":		EnableControls(((TabPage)ctl).Controls, Enable, Clear);		break;
 				case "TextBox":
 					TextBox txt = (TextBox)ctl;
 					txt.Enabled = Enable;
@@ -1562,12 +1604,9 @@ namespace TCBase
 					tvw.Enabled = Enable;
 					tvw.BackColor = BackColor;
 					break;
-				case "ToolBar":
-					break;
-				case "VScrollBar":
-					break;
-				default:
-					throw new Exception(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(ctl), EntryName, ctl.Name));
+				case "ToolBar":		break;
+				case "VScrollBar":	break;
+				default:			throw new Exception(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(ctl), EntryName, ctl.Name));
 			}
 		}
 		protected internal void EnableControls(Control.ControlCollection pControls, bool Enable, bool Clear)
@@ -1861,8 +1900,9 @@ namespace TCBase
 		protected virtual void UnbindControl(CheckBox iControl, bool fEnable)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2})", new object[] {
+			Trace("{0}({1}:={2},{3})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable
 			}, trcOption.trcBinding | trcOption.trcControls);
@@ -1880,8 +1920,9 @@ namespace TCBase
 		protected virtual void UnbindControl(CheckedListBox iControl, bool fEnable)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2})", new object[] {
+			Trace("{0}({1}:={2},{3})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable
 			}, trcOption.trcBinding | trcOption.trcControls);
@@ -1899,8 +1940,9 @@ namespace TCBase
 		protected virtual void UnbindControl(ComboBox iControl, bool fEnable, bool fClear)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2},{3})", new object[] {
+			Trace("{0}({1}:={2},{3},{4})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable,
 				fClear
@@ -1925,8 +1967,9 @@ namespace TCBase
 		protected virtual void UnbindControl(DataGrid iControl)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1})", new object[] {
+			Trace("{0}({1}:={2})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name
 			}, trcOption.trcBinding | trcOption.trcControls);
 			//No error handler on purpose - let it fail up to the caller's handler...
@@ -1965,8 +2008,9 @@ namespace TCBase
 		protected virtual void UnbindControl(DateTimePicker iControl, bool fEnable, bool fClear)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2},{3})", new object[] {
+			Trace("{0}({1}:={2},{3},{4})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable,
 				fClear
@@ -1989,8 +2033,9 @@ namespace TCBase
 		protected virtual void UnbindControl(Label iControl, bool fEnable)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2})", new object[] {
+			Trace("{0}({1}:={2},{3})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable
 			}, trcOption.trcBinding | trcOption.trcControls);
@@ -2009,8 +2054,9 @@ namespace TCBase
 		protected virtual void UnbindControl(PictureBox iControl)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1})", new object[] {
+			Trace("{0}({1}:={2})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name
 			}, trcOption.trcBinding | trcOption.trcControls);
 			//No error handler on purpose - let it fail up to the caller's handler...
@@ -2028,8 +2074,9 @@ namespace TCBase
 		protected virtual void UnbindControl(RadioButton iControl, bool fEnable)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2})", new object[] {
+			Trace("{0}({1}:={2},{3},{4})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable
 			}, trcOption.trcBinding | trcOption.trcControls);
@@ -2049,8 +2096,9 @@ namespace TCBase
 		protected virtual void UnbindControl(RichTextBox iControl, bool fEnable, bool fClear)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2},{3})", new object[] {
+			Trace("{0}({1}:={2},{3},{4})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable,
 				fClear
@@ -2072,8 +2120,9 @@ namespace TCBase
 		protected virtual void UnbindControl(TextBox iControl, bool fEnable, bool fClear)
 		{
 			const string EntryName = "UnbindControl";
-			Trace("{0}({1},{2},{3})", new object[] {
+			Trace("{0}({1}:={2},{3},{4})", new object[] {
 				EntryName,
+				"{"+Information.TypeName(iControl)+"}",
 				iControl.Name,
 				fEnable,
 				fClear
@@ -2114,67 +2163,36 @@ namespace TCBase
 		{
 			const string EntryName = "UnbindControls";
 			try {
-				Trace(trcType.trcEnter, EntryName, trcOption.trcApplication);
+				Trace(trcType.trcEnter, EntryName, trcOption.trcBinding | trcOption.trcControls);
 				Trace("{0}({{ControlCollection}},{1})", new object[] {
 					EntryName,
 					fClear
-				}, trcOption.trcBinding | trcOption.trcControls);
+				}, trcOption.trcApplication | trcOption.trcBinding | trcOption.trcControls);
 				foreach (Control iControl in pControls) {
 					//UnbindControl(iControl, fEnable, fClear)
 					switch (iControl.GetType().Name) {
-						case "Button":
-							break;
-						case "CheckBox":
-							UnbindControl((CheckBox)iControl, fEnable);
-							break;
-						case "CheckedListBox":
-							UnbindControl((CheckedListBox)iControl, fEnable);
-							break;
-						case "ComboBox":
-							UnbindControl((ComboBox)iControl, fEnable, fClear);
-							break;
-						case "DataGrid":
-							UnbindControl((DataGrid)iControl);
-							break;
-						case "DateTimePicker":
-							UnbindControl((DateTimePicker)iControl, fEnable, fClear);
-							break;
-						case "Label":
-							UnbindControl((Label)iControl, fEnable);
-							break;
-						case "GroupBox":
-							UnbindControls(((GroupBox)iControl).Controls, fEnable, fClear);
-							break;
-						case "HScrollBar":
-							break;
-						case "Panel":
-							UnbindControls(((Panel)iControl).Controls, fEnable, fClear);
-							break;
-						case "PictureBox":
-							UnbindControl((PictureBox)iControl);
-							break;
-						case "RadioButton":
-							UnbindControl((RadioButton)iControl, fEnable);
-							break;
-						case "RichTextBox":
-							UnbindControl((RichTextBox)iControl, fEnable, fClear);
-							break;
-						case "StatusBar":
-							break;
-						case "TabControl":
-							UnbindControls(((TabControl)iControl).Controls, fEnable, fClear);
-							break;
-						case "TabPage":
-							UnbindControls(((TabPage)iControl).Controls, fEnable, fClear);
-							break;
-						case "TextBox":
-							UnbindControl((TextBox)iControl, fEnable, fClear);
-							break;
-						case "ToolBar":
-							break;
+						case "Button":			break;
+						case "CheckBox":		UnbindControl((CheckBox)iControl, fEnable);							break;
+						case "CheckedListBox":	UnbindControl((CheckedListBox)iControl, fEnable);					break;
+						case "ComboBox":		UnbindControl((ComboBox)iControl, fEnable, fClear);					break;
+						case "DataGrid":		UnbindControl((DataGrid)iControl);									break;
+						case "DateTimePicker":	UnbindControl((DateTimePicker)iControl, fEnable, fClear);			break;
+						case "Label":			UnbindControl((Label)iControl, fEnable);							break;
+						case "GroupBox":		UnbindControls(((GroupBox)iControl).Controls, fEnable, fClear);		break;
+						case "HScrollBar":		break;
+						case "Panel":			UnbindControls(((Panel)iControl).Controls, fEnable, fClear);		break;
+						case "PictureBox":		UnbindControl((PictureBox)iControl);								break;
+						case "RadioButton":		UnbindControl((RadioButton)iControl, fEnable);						break;
+						case "RichTextBox":		UnbindControl((RichTextBox)iControl, fEnable, fClear);				break;
+						case "StatusBar":		break;
+						case "StatusStrip":		break;
+						case "TabControl":		UnbindControls(((TabControl)iControl).Controls, fEnable, fClear);	break;
+						case "TabPage":			UnbindControls(((TabPage)iControl).Controls, fEnable, fClear);		break;
+						case "TextBox":			UnbindControl((TextBox)iControl, fEnable, fClear);					break;
+						case "ToolBar":			break;
 						default:
 							//Throw New Exception(String.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", TypeName(iControl), EntryName, iControl.Name))
-							Trace(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(iControl), EntryName, iControl.Name), trcOption.trcApplication);
+							Trace(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(iControl), EntryName, iControl.Name), trcOption.trcApplication | trcOption.trcBinding | trcOption.trcControls);
 							try {
 								iControl.DataBindings.Clear();
 							} catch (Exception ex) {
@@ -2183,7 +2201,7 @@ namespace TCBase
 					}
 				}
 			} finally {
-				Trace(trcType.trcExit, EntryName, trcOption.trcBinding | trcOption.trcControls);
+				Trace(trcType.trcExit, EntryName, trcOption.trcApplication | trcOption.trcBinding | trcOption.trcControls);
 			}
 		}
 		#region "Utility Methods"
@@ -2517,39 +2535,22 @@ namespace TCBase
 		{
 			const string EntryName = "DumpControl";
 			switch (Information.TypeName(ctl)) {
-				case "Button":
-					break;
-				case "CheckBox":
-					break;
-				case "ComboBox":
-					break;
-				case "DateTimePicker":
-					break;
-				case "Form":
-					break;
-				case "GroupBox":
-					DumpControls(((GroupBox)ctl).Controls);
-					break;
-				case "Label":
-					break;
-				case "PictureBox":
-					break;
-				case "RichTextBox":
-					break;
-				case "StatusBar":
-					break;
-				case "TextBox":
-					break;
-				case "TabControl":
-					DumpControls(((TabControl)ctl).Controls);
-					break;
-				case "TabPage":
-					DumpControls(((TabPage)ctl).Controls);
-					break;
-				case "ToolBar":
-					break;
-				default:
-					throw new Exception(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(ctl), EntryName, ctl.Name));
+				case "Button":			break;
+				case "CheckBox":		break;
+				case "ComboBox":		break;
+				case "DateTimePicker":	break;
+				case "Form":			break;
+				case "GroupBox":		DumpControls(((GroupBox)ctl).Controls); break;
+				case "Label":			break;
+				case "PictureBox":		break;
+				case "RichTextBox":		break;
+				case "StatusBar":		break;
+				case "StatusStrip":		break;
+				case "TextBox":			break;
+				case "TabControl":		DumpControls(((TabControl)ctl).Controls); break;
+				case "TabPage":			DumpControls(((TabPage)ctl).Controls); break;
+				case "ToolBar":			break;
+				default:				throw new Exception(string.Format("Unexpected control type ({0}) encountered in {1}(). Control: {2}", Information.TypeName(ctl), EntryName, ctl.Name));
 			}
 		}
 		protected void DumpControls(Form pForm)

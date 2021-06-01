@@ -1,10 +1,13 @@
-//frmSQL.vb
+//frmSQL.cs
 //   SQL Query Interface...
-//   Copyright © 1998-2018, Ken Clark
+//   Copyright © 1998-2021, Ken Clark
 //*********************************************************************************************************************************
 //
 //   Modification History:
 //   Date:       Description:
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//TODO:   07/21/19    Changed form positioning from being independent to being centered on the parent form;
 //   09/18/16    Updated object references to reflect architectural changes;
 //   10/19/14    Upgraded to VS2013;
 //   07/26/10    Reorganized registry settings;
@@ -1903,6 +1906,7 @@ namespace TCBase
 			int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", this.Top);
 			int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", this.Width);
 			int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", this.Height);
+			base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
 			this.SetBounds(iLeft, iTop, iWidth, iHeight);
 		}
 		protected void frmSQL_Closed(System.Object sender, System.EventArgs e)

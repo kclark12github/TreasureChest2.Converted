@@ -1,10 +1,17 @@
-//frmList.vb
+//frmList.cs
 //   List Form...
-//   Copyright © 1998-2018, Ken Clark
+//   Copyright © 1998-2021, Ken Clark
 //*********************************************************************************************************************************
 //
 //   Modification History:
 //   Date:       Description:
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//TODO:   07/21/19    Moved User Preferences from local registry into database;
+//TODO:   06/12/19    Modified registry key used in preserving screen settings to use the form's caption rather than being hard-coded to 
+//TODO:               use "List Settings" (which enabled reuse of screen for both List and History commands);
+//TODO:               Established mDisplayMode to account for behavior differences between List and History usage;
+//TODO:   09/08/18    Implemented multi-column Sort functionality;
 //   12/21/17    Addressed CurrencyManager synchronization issue introduced by image processing (RemoveImage) that had caused 
 //               tcDataView_ListChanged to fire after moving to the new row while cleaning up image memory used by the old row;
 //   06/09/17    Addressed NullReferenceException in dgList_CurrentCellChanged;
@@ -307,6 +314,7 @@ namespace TCBase
 			int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", 0);
 			int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", Convert.ToInt32(Screen.PrimaryScreen.Bounds.Width));
 			int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height));
+			base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
 			this.SetBounds(iLeft, iTop, iWidth, iHeight);
 			ResetGrid();
 		}

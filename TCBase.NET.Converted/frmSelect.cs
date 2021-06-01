@@ -1,10 +1,23 @@
-//frmSelect.vb
+//frmSelect.cs
 //   Selection/Filter Form for TreasureChest2 Project...
-//   Copyright © 1998-2018, Ken Clark
+//   Copyright © 1998-2021, Ken Clark
 //*********************************************************************************************************************************
 //
 //   Modification History:
 //   Date:       Description:
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//TODO:   07/21/19    Moved User Preferences from local registry into database;
+//TODO:   07/21/19    Abandoned further refinement to chkFilterBy/SelectedIndexChanged behavior due to lack of clear requirements;
+//TODO:               Changed form positioning from being independent to being centered on the parent form;
+//TODO:   07/17/19    Abandoned ComboBox data binding due to additional issues (data binding doesn't play well when we allow users
+//TODO:               to enter values not in the bound list of values) by implementing PopulateComboBox which takes the binding
+//TODO:               information from the main screen to populate each ComboBox control's Items list directly;
+//TODO:               Corrected weird space data-entry behavior;
+//TODO:   07/16/19    Corrected data binding inconsistency causing unexpected results when using chkFilterXXX functionality;
+//TODO:   07/09/19    Implemented Filter restriction functionality where each selection criteria on the Filter/Selection screen
+//TODO:               can be be used to filter the other criteria to narrow those ComboBox selections;
+//TODO:   09/01/18    Corrected DateTimePicker size issues;
 //   07/21/18    Corrected issue with square bracket in wild carded filters (replacing "[" with "[[]" in lieu 
 //               of "\[" with ESCAPE '\');
 //   12/22/17    Reworked CheckState progression;
@@ -20,7 +33,7 @@
 //TODO: Test filter strings containing ":" characters and trap any resulting errors before failing more seriously...
 //TODO: Add Functionality to "filter" ComboBox display based on data in the other controls...
 //=================================================================================================================================
- // ERROR: Not supported in C#: OptionDeclaration
+// ERROR: Not supported in C#: OptionDeclaration
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.Win32;
@@ -1024,6 +1037,7 @@ namespace TCBase
 				int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", this.Top);
 				int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", this.Width);
 				int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", this.Height);
+				base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
 				this.SetBounds(iLeft, iTop, iWidth, iHeight);
 
 				Clear();

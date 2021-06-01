@@ -1,10 +1,18 @@
-//frmTCStandard.vb
+//frmTCStandard.cs
 //   Base Data Entry Form for TreasureChest2 Project...
-//   Copyright © 1998-2018, Ken Clark
+//   Copyright © 1998-2021, Ken Clark
 //*********************************************************************************************************************************
 //
 //   Modification History:
 //   Date:       Description:
+//   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
+//               current device so this form would always displays on the current viewport;
+//TODO:   07/21/19    Moved User Preferences from local registry into database;
+//TODO:   07/08/19    Moved ttBase (ToolTip) from frmTCStandard into base class;
+//TODO:   06/12/19    Implemented support for HistoryCommand;
+//TODO:               Added mode-specific "Edit Mode" clarification on StatusBar, distinguishing between Add/Copy/Modify modes;
+//TODO:   09/01/18    Implemented new Sort functionality;
+//TODO:   08/26/18    Reworked Shell32 logic used to determine file properties;
 //   02/03/18    Restored ActionModeChange's use of EnableControls (from EnableControlsByBinding) as the former method would not
 //               trigger handling of RichTextBox controls (despite sub-classing the control to make the Rtf property bind-able);
 //   12/19/17    Added UnbindControls call before CopyCommand and NewCommand in an effort to eliminate weird binding behavior most
@@ -28,7 +36,7 @@
 //   10/25/09    Created in VB.NET;
 //=================================================================================================================================
 //=================================================================================================================================
- // ERROR: Not supported in C#: OptionDeclaration
+// ERROR: Not supported in C#: OptionDeclaration
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.VisualBasic.Devices;
@@ -293,7 +301,6 @@ namespace TCBase
 		protected internal StatusBar sbStatus;
 		protected internal StatusBarPanel sbpFilter;
 		protected internal StatusBarPanel sbpMode;
-		protected internal ToolTip ttBase;
 		protected internal OpenFileDialog ofdTCStandard;
 		protected internal SaveFileDialog sfdTCStandard;
 		public CheckBox chkWishList;
@@ -549,7 +556,6 @@ namespace TCBase
 			this.timClock = new System.Windows.Forms.Timer(this.components);
 			this.btnExit = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
-			this.ttBase = new System.Windows.Forms.ToolTip(this.components);
 			this.ofdTCStandard = new System.Windows.Forms.OpenFileDialog();
 			this.sfdTCStandard = new System.Windows.Forms.SaveFileDialog();
 			this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
@@ -1305,10 +1311,6 @@ namespace TCBase
 			this.btnCancel.Size = new System.Drawing.Size(75, 25);
 			this.btnCancel.TabIndex = 26;
 			this.btnCancel.Text = "Cancel";
-			//
-			//ttBase
-			//
-			this.ttBase.ShowAlways = true;
 			//
 			//mnuMain
 			//
@@ -2300,7 +2302,8 @@ namespace TCBase
                 int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", this.Top);
                 int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", this.Width);
                 int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", this.Height);
-                this.SetBounds(iLeft, iTop, iWidth, iHeight);
+				base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
+				this.SetBounds(iLeft, iTop, iWidth, iHeight);
 
                 //Since SaveRegistrySetting isn't [yet] smart enough to create a missing parent key when creating sub-keys, 
                 //we'll save our would-be parent key here even though it makes more sense to do so in the UnloadCommand...
