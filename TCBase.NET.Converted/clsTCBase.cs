@@ -1794,6 +1794,10 @@ namespace TCBase
 				Trace(trcType.trcExit, EntryName, trcOption.trcApplication);
 			}
 		}
+		public void HistoryCommand(ref Boolean AllowUpdate)
+        {
+			//TODO: Complete HistoryCommand()
+        }
 		public void ListCommand(bool AllowUpdate = true)
 		{
 			const string EntryName = "ListCommand";
@@ -2502,6 +2506,36 @@ namespace TCBase
 			}
 		}
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
+		public void ExecuteCommand(string SQLsource, clsCollection parms, ref int RecordsAffected, Boolean PreserveParms=false)
+		{
+			SqlCommand cmd = new SqlCommand();
+			try
+			{
+				cmd.CommandText = SQLsource;
+				cmd.CommandType = CommandType.Text;
+				cmd.Connection = tcConnection;
+				cmd.CommandTimeout = mCommandTimeout;
+				cmd.Transaction = tcTransaction;
+				cmd.Parameters.Clear();
+				foreach (clsItem i in parms) {
+					cmd.Parameters.Add(GetNewSqlParameter(i.Key, i.Value));
+				}
+				LogSQL(cmd);
+				RecordsAffected = cmd.ExecuteNonQuery();
+				if (InconsistentViewDetected(SQLsource, RecordsAffected))
+				{
+					//Trace("SQLCommand() - Inconsistent View Detected, raising error..." & vbCrLf & vbCrLf & "SQL Statement: " & vbCrLf & SQLsource, trcOption.trcDB)
+					throw new Exception(string.Format("Inconsistent View detected. SQL: {0}", SQLsource));
+				}
+			} catch (Exception ex) {
+				try {AbortTrans();}	catch{}
+				throw;
+			} finally {
+				if (!PreserveParms) parms = null;
+				cmd.Dispose(); cmd = null;
+			}
+		}
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		public object ExecuteScalarCommand(string SQLsource)
 		{
 			object functionReturnValue = null;
@@ -2524,6 +2558,33 @@ namespace TCBase
 			} finally {
 				cmd.Dispose();
 				cmd = null;
+			}
+			return functionReturnValue;
+		}
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
+		public object ExecuteScalarCommand(string SQLsource, clsCollection parms, Boolean PreserveParms = false)
+		{
+			object functionReturnValue = null;
+			SqlCommand cmd = new SqlCommand();
+			try
+			{
+				cmd.CommandText = SQLsource;
+				cmd.CommandTimeout = mCommandTimeout;
+				cmd.CommandType = CommandType.Text;
+				cmd.Connection = tcConnection;
+				if ((tcTransaction != null) && object.ReferenceEquals(tcTransaction.Connection, cmd.Connection)) cmd.Transaction = tcTransaction;
+				cmd.Parameters.Clear();
+				foreach (clsItem i in parms) {
+					cmd.Parameters.Add(GetNewSqlParameter(i.Key, i.Value));
+				}
+				LogSQL(cmd);
+				functionReturnValue = cmd.ExecuteScalar();
+			} catch (Exception ex) {
+				try {AbortTrans();} catch {	}
+				throw;
+			} finally {
+				if (!PreserveParms) parms = null;
+				cmd.Dispose(); cmd = null;
 			}
 			return functionReturnValue;
 		}
@@ -2620,6 +2681,13 @@ namespace TCBase
 			//        param.Value = dataRow(iColumn.ColumnName, DataRowVersion.Current)
 			//End Select
 			return param;
+		}
+		protected SqlParameter GetNewSqlParameter(string Name, object Value)
+		{
+			SqlParameter parm = new SqlParameter(String.Format("@{0}", Name), Value.GetType());
+			parm.SourceColumn = Name;
+			parm.Value = Value;
+			return parm;
 		}
 		public static Icon ImageToIcon(Image SourceImage)
 		{
@@ -4524,6 +4592,16 @@ namespace TCBase
 			Trace("Windows Registry Editor Version 5.00", trcOption.trcApplication);
 			DumpRegistryKey(root, Key);
 		}
+		public object GetUserPreference(string Key, object vDefault) 
+		{
+			clsCollection parms = new clsCollection(new string[] { "UserID", "Key" }, new Object[] { mUserID, Key });
+			string SQL = string.Format("Select [Value] From [UserPreferences] Where [UserID]=@UserID And [Key]=@Key;");
+
+			object result = ExecuteScalarCommand(SQL, parms);
+
+			if ((result == null) || Information.IsDBNull(result)) result = vDefault;
+			return result;
+		}
 		private void ExportRegistryKey(Microsoft.Win32.RegistryKey Key, string SubKeyName, StreamWriter ExportWriter)
 		{
 			ExportWriter.WriteLine(string.Format("{0}[{1}\\{2}]", ControlChars.NewLine, Key.Name, SubKeyName));
@@ -4564,6 +4642,19 @@ namespace TCBase
 			SaveRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, Key, "Form Width", iWidth);
 			SaveRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, Key, "Form Height", iHeight);
 		}
+		public void SaveUserPreference(string Key, object Value)
+        {
+			clsCollection parms = new clsCollection(new String[] { "UserID", "Key", "Value" }, new Object[] { mUserID, Key, Value });
+			string SQL = string.Empty;
+
+			if (GetUserPreference(Key, null) == null) {
+				SQL = "Insert Into [UserPreferences]([UserID],[Key],[Value]) Values(@UserID,@Key,@Value);";
+			} else {
+				SQL = "Update [UserPreferences] Set [Value]=@Value Where [UserID]=@UserID And [Key]=@Key;";
+			}
+			int recordsAffected = 0;
+			ExecuteCommand(SQL, parms, ref recordsAffected);
+        }
 		#endregion
 		#region "Utility Methods"
 		public void Busy(bool IsBusy)

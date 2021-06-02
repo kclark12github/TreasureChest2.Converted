@@ -189,6 +189,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="clsCollection.cs" />
     <Compile Include="clsDataBaseCollection.cs">
       <SubType>Code</SubType>
     </Compile>

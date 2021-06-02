@@ -7,12 +7,12 @@
 //   Date:       Description:
 //   07/27/19    Added logic to adjust form placement to account for preferences from a device with a size larger than the 
 //               current device so this form would always displays on the current viewport;
-//TODO:   07/21/19    Moved User Preferences from local registry into database;
-//TODO:   07/08/19    Moved ttBase (ToolTip) from frmTCStandard into base class;
-//TODO:   06/12/19    Implemented support for HistoryCommand;
-//TODO:               Added mode-specific "Edit Mode" clarification on StatusBar, distinguishing between Add/Copy/Modify modes;
-//TODO:   09/01/18    Implemented new Sort functionality;
-//TODO:   08/26/18    Reworked Shell32 logic used to determine file properties;
+//   07/21/19    Moved User Preferences from local registry into database;
+//   07/08/19    Moved ttBase (ToolTip) from frmTCStandard into base class;
+//   06/12/19    Implemented support for HistoryCommand;
+//               Added mode-specific "Edit Mode" clarification on StatusBar, distinguishing between Add/Copy/Modify modes;
+//   09/01/18    Implemented new Sort functionality;
+//   08/26/18    Reworked Shell32 logic used to determine file properties;
 //   02/03/18    Restored ActionModeChange's use of EnableControls (from EnableControlsByBinding) as the former method would not
 //               trigger handling of RichTextBox controls (despite sub-classing the control to make the Rtf property bind-able);
 //   12/19/17    Added UnbindControls call before CopyCommand and NewCommand in an effort to eliminate weird binding behavior most
@@ -231,6 +231,7 @@ namespace TCBase
 		private ToolBarButton tbbRefresh;
 		private ToolBarButton tbbSep2;
 		private ToolBarButton tbbFilter;
+		private ToolBarButton tbbHistory;
         private ToolBarButton tbbSort;
 		private ToolBarButton tbbList;
 		private ToolBarButton tbbSep3;
@@ -300,6 +301,7 @@ namespace TCBase
 		}
 		protected internal StatusBar sbStatus;
 		protected internal StatusBarPanel sbpFilter;
+		protected internal StatusBarPanel sbpSort;
 		protected internal StatusBarPanel sbpMode;
 		protected internal OpenFileDialog ofdTCStandard;
 		protected internal SaveFileDialog sfdTCStandard;
@@ -378,6 +380,7 @@ namespace TCBase
 		private System.Windows.Forms.MenuItem mnuRecordsRefresh;
 		private System.Windows.Forms.MenuItem mnuRecordsSep2;
 		private System.Windows.Forms.MenuItem mnuRecordsFilter;
+		private System.Windows.Forms.MenuItem mnuRecordsHistory;
         private System.Windows.Forms.MenuItem mnuRecordsSort;
         private System.Windows.Forms.MenuItem mnuRecordsList;
 		private System.Windows.Forms.MenuItem mnuRecordsSelect;
@@ -494,6 +497,7 @@ namespace TCBase
 			this.sbpPosition = new System.Windows.Forms.StatusBarPanel();
 			this.sbpMode = new System.Windows.Forms.StatusBarPanel();
 			this.sbpFilter = new System.Windows.Forms.StatusBarPanel();
+			this.sbpSort = new System.Windows.Forms.StatusBarPanel();
 			this.sbpStatus = new System.Windows.Forms.StatusBarPanel();
 			this.sbpMessage = new System.Windows.Forms.StatusBarPanel();
 			this.sbpTrace = new System.Windows.Forms.StatusBarPanel();
@@ -513,7 +517,8 @@ namespace TCBase
 			this.tbbRefresh = new System.Windows.Forms.ToolBarButton();
 			this.tbbSep3 = new System.Windows.Forms.ToolBarButton();
 			this.tbbFilter = new System.Windows.Forms.ToolBarButton();
-            this.tbbSort = new System.Windows.Forms.ToolBarButton();
+			this.tbbHistory = new System.Windows.Forms.ToolBarButton();
+			this.tbbSort = new System.Windows.Forms.ToolBarButton();
             this.tbbList = new System.Windows.Forms.ToolBarButton();
 			this.tbbSep4 = new System.Windows.Forms.ToolBarButton();
 			this.tbbReport = new System.Windows.Forms.ToolBarButton();
@@ -575,7 +580,8 @@ namespace TCBase
 			this.mnuRecordsRefresh = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsSep3 = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsFilter = new System.Windows.Forms.MenuItem();
-            this.mnuRecordsSort = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsHistory = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSort = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsList = new System.Windows.Forms.MenuItem();
 			this.mnuFileTrace = new System.Windows.Forms.MenuItem();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -586,6 +592,7 @@ namespace TCBase
 			((System.ComponentModel.ISupportInitialize)this.sbpPosition).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpMode).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpFilter).BeginInit();
+			((System.ComponentModel.ISupportInitialize)this.sbpSort).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpStatus).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpMessage).BeginInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpTrace).BeginInit();
@@ -691,6 +698,7 @@ namespace TCBase
 				this.sbpPosition,
 				this.sbpMode,
 				this.sbpFilter,
+				this.sbpSort,
 				this.sbpStatus,
 				this.sbpMessage,
 				this.sbpTrace,
@@ -726,6 +734,14 @@ namespace TCBase
 			this.sbpFilter.Text = "Filter";
 			this.sbpFilter.ToolTipText = "Filter";
 			this.sbpFilter.Width = 39;
+			//
+			//sbpSort
+			//
+			this.sbpSort.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+			this.sbpSort.Name = "sbpSort";
+			this.sbpSort.Text = "Sort";
+			this.sbpSort.ToolTipText = "Sort";
+			this.sbpSort.Width = 43;
 			//
 			//sbpStatus
 			//
@@ -816,6 +832,7 @@ namespace TCBase
                 this.tbbSort,
 				this.tbbList,
 				this.tbbSep4,
+				this.tbbHistory,
 				this.tbbReport,
 				this.tbbSQL,
 				this.tbbSep5,
@@ -898,10 +915,16 @@ namespace TCBase
             this.tbbSort.ImageIndex = 13;
             this.tbbSort.Name = "tbbSort";
             this.tbbSort.ToolTipText = "Sort";
-            //
-            //tbbList
-            //
-            this.tbbList.ImageIndex = 6;
+			//
+			//tbbHistory
+			//
+			this.tbbHistory.ImageIndex = 14;
+			this.tbbHistory.Name = "tbbHistory";
+			this.tbbHistory.ToolTipText = "History";
+			//
+			//tbbList
+			//
+			this.tbbList.ImageIndex = 6;
 			this.tbbList.Name = "tbbList";
 			this.tbbList.ToolTipText = "List";
 			//
@@ -958,9 +981,10 @@ namespace TCBase
 			this.imgToolbar.Images.SetKeyName(10, "");
 			this.imgToolbar.Images.SetKeyName(11, "");
 			this.imgToolbar.Images.SetKeyName(12, "");
-            this.imgToolbar.Images.SetKeyName(13, "Sort.ico");
+			this.imgToolbar.Images.SetKeyName(13, "Sort.ico");
+			this.imgToolbar.Images.SetKeyName(14, "History.ico");
 			//
-            //tcMain
+			//tcMain
 			//
 			this.tcMain.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
 			this.tcMain.Controls.Add(this.tpGeneral);
@@ -1288,7 +1312,7 @@ namespace TCBase
 			//
 			//timClock
 			//
-			this.timClock.Enabled = true;
+			this.timClock.Enabled = false;
 			this.timClock.Interval = 1000;
 			//
 			//btnExit
@@ -1365,6 +1389,7 @@ namespace TCBase
 				this.mnuRecordsSep3,
 				this.mnuRecordsFilter,
                 this.mnuRecordsSort,
+				this.mnuRecordsHistory,
 				this.mnuRecordsList
 			});
 			this.mnuRecords.Text = "&Records";
@@ -1433,10 +1458,15 @@ namespace TCBase
             this.mnuRecordsSort.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
             this.mnuRecordsSort.Text = "&Sort";
             this.mnuRecordsSort.Visible = false;
-            //
-            //mnuRecordsList
-            //
-            this.mnuRecordsList.Index = 11;
+			//
+			//mnuRecordsHistory
+			//
+			this.mnuRecordsHistory.Index = 11;
+			this.mnuRecordsHistory.Text = "&History";
+			//
+			//mnuRecordsList
+			//
+			this.mnuRecordsList.Index = 12;
 			this.mnuRecordsList.Shortcut = System.Windows.Forms.Shortcut.F3;
 			this.mnuRecordsList.Text = "&List";
 			//
@@ -1507,6 +1537,7 @@ namespace TCBase
 			((System.ComponentModel.ISupportInitialize)this.sbpPosition).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpMode).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpFilter).EndInit();
+			((System.ComponentModel.ISupportInitialize)this.sbpSort).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpStatus).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpMessage).EndInit();
 			((System.ComponentModel.ISupportInitialize)this.sbpTrace).EndInit();
@@ -1557,7 +1588,8 @@ namespace TCBase
 			Report,
 			Copy,
 			Dump,
-            Sort
+            Sort,
+			History
 		}
 		protected enum tbButtonEnum : short
 		{
@@ -1574,6 +1606,7 @@ namespace TCBase
             Sort,
 			List,
 			Sep4,
+			History,
 			Report,
 			SQL,
 			Sep5,
@@ -1783,7 +1816,7 @@ namespace TCBase
 		}
 		protected void ImportImage(PictureBox ctl)
 		{
-			string ImagePath = (string)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, string.Format("{0}\\{1} Settings", mTCBase.RegistryKey, mTCBase.ActiveForm.Name), "ImagePath", mTCBase.ImagePath);
+			string ImagePath = (string)mTCBase.GetUserPreference(string.Format("{0}\\ImagePath", mTCBase.ActiveForm.Name), mTCBase.ImagePath);
 			string CurrentDrive = null;
 			CurrentDrive = ParsePath(ImagePath, ParseParts.DrvOnly);
 			FileSystem.ChDrive(CurrentDrive);
@@ -1801,7 +1834,7 @@ namespace TCBase
 			if (this.ofdTCStandard.ShowDialog(this) == DialogResult.Cancel)
 				return;
 			ImagePath = ParsePath(this.ofdTCStandard.FileName, ParseParts.DrvDir);
-			SaveRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, string.Format("{0}\\{1} Settings", mTCBase.RegistryKey, mTCBase.ActiveForm.Name), "ImagePath", ImagePath);
+			mTCBase.SaveUserPreference(string.Format("{0}\\ImagePath", mTCBase.ActiveForm.Name), ImagePath);
 			Image tmpImage = Image.FromFile(ofdTCStandard.FileName);
 			MemoryStream ms = new MemoryStream();
 			tmpImage.Save(ms, tmpImage.RawFormat);
@@ -1931,9 +1964,8 @@ namespace TCBase
 						}
 						this.EnableButtons(true);
 						this.tcMain.Focus();
-						if (e.newMode == ActionModeEnum.modeAdd)
-							this.sbpPosition.Text = "Adding";
-						this.sbpMode.Text = "Edit Mode";
+						if (e.newMode == ActionModeEnum.modeAdd) this.sbpPosition.Text = "Adding";
+						this.sbpMode.Text = string.Format("{0} Mode", e.newMode.ToString().Replace("mode", string.Empty));
 						fOKtoUnload = false;
 						this.AcceptButton = this.btnOK;
 						this.CancelButton = this.btnCancel;
@@ -2008,8 +2040,23 @@ namespace TCBase
 		{
 			string newFilter = ((e.NewFilter == null) ? bpeNullString : e.NewFilter);
 			base.Trace("{0}:={1}", "newFilter", e.NewFilter, trcOption.trcApplication);
-			this.sbpStatus.Text = string.Format("Filter {0}", (newFilter == bpeNullString ? "Off" : "On"));
-			this.sbpFilter.Text = newFilter;
+			this.sbpStatus.Text = (newFilter.Equals(bpeNullString) ? "Unfiltered" : "Filtered");
+			this.sbpFilter.Text = string.Format("RowFilter: {0}", (newFilter.Equals(bpeNullString) ? "Unfiltered" : newFilter));
+		}
+		private void SortCanceled(object sender, SortChangeEventArgs e)
+		{
+			base.Trace("{0}:={1}", "newSort", e.NewSort, trcOption.trcApplication);
+			string newSort = e.NewSort == null ? bpeNullString : e.NewSort;
+			this.sbpSort.Text = "Sort Canceled";
+			this.sbpSort.Text = newSort.Equals(bpeNullString) ? "Unsorted" : "Sorted";
+			this.sbpSort.ToolTipText = newSort;
+		}
+		private void SortChange(object sender, SortChangeEventArgs e)
+		{
+			string newSort = ((e.NewSort == null) ? bpeNullString : e.NewSort);
+			base.Trace("{0}:={1}", "newSort", e.NewSort, trcOption.trcApplication);
+			this.sbpSort.Text = (newSort == bpeNullString ? "Unsorted" : "Sorted");
+			this.sbpSort.ToolTipText = newSort;
 		}
 		protected virtual void Tick(System.Object sender, System.EventArgs e)
 		{
@@ -2239,8 +2286,9 @@ namespace TCBase
 			//mnuRecordsRefresh = mnuRecords.MenuItems(mnuRecords.MenuItems.Add(New clsIconMenuItem("&Refresh", "Verdana", 10, ImageToIcon(Me.imgToolbar.Images.Item(imgToolBarEnum.Refresh)), New EventHandler(AddressOf Me.mnuRecordsRefresh_Click), Nothing)))
 			mnuRecordsSep3 = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new MenuItem("-"))];
 			mnuRecordsFilter = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&Filter", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.Filter]), new EventHandler(this.mnuRecordsFilter_Click), Shortcut.CtrlShiftF))];
-            mnuRecordsSort = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&Sort", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.Sort]), new EventHandler(this.mnuRecordsSort_Click), Shortcut.CtrlShiftS))];
-            mnuRecordsList = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&List", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.List]), new EventHandler(this.mnuRecordsList_Click), Shortcut.F3))];
+			mnuRecordsSort = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&Sort", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.Sort]), new EventHandler(this.mnuRecordsSort_Click), Shortcut.CtrlShiftS))];
+			mnuRecordsHistory = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&History", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.History]), new EventHandler(this.mnuRecordsHistory_Click), Shortcut.None))];
+			mnuRecordsList = mnuRecords.MenuItems[mnuRecords.MenuItems.Add(new clsIconMenuItem("&List", "Verdana", 10, clsTCBase.ImageToIcon(this.imgToolbar.Images[(int)imgToolBarEnum.List]), new EventHandler(this.mnuRecordsList_Click), Shortcut.F3))];
 
 			tbMain.Buttons[(int)tbButtonEnum.Select].Visible = false;
 			tbMain.Buttons[(int)tbButtonEnum.Sep1].Visible = false;
@@ -2269,6 +2317,7 @@ namespace TCBase
 			}
 			//Pick-up any Filter changes that may have transpired before we were fully loaded...
 			FilterChange(this, new FilterChangeEventArgs(bpeNullString, mTCBase.SQLFilter));
+			SortChange(this, new SortChangeEventArgs(bpeNullString, mTCBase.SQLSort));
 
 			//Resize our rtfNotes to fit properly inside its TabPanel...
 			this.rtfNotes.Size = new Size(this.tpNotes.Width - (2 * 4), this.tpNotes.Height - (2 * 4));
@@ -2287,6 +2336,7 @@ namespace TCBase
 				(this.btnExit.Top + this.btnExit.Height),
 				this.sbStatus.Top - (this.btnExit.Top + this.btnExit.Height)
 			}, trcOption.trcApplication);
+			timClock.Enabled = true;    //This ensures that the clock isn't activated until run-time...
 		}
 		protected virtual void Form_Shown(object sender, System.EventArgs e)
 		{
@@ -2298,16 +2348,13 @@ namespace TCBase
                     throw new ExitTryException();
                 fActivated = true;
 
-                int iLeft = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Left", this.Left);
-                int iTop = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Top", this.Top);
-                int iWidth = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Width", this.Width);
-                int iHeight = (int)GetRegistrySetting(RootKeyConstants.HKEY_CURRENT_USER, mRegistryKey, "Form Height", this.Height);
+                int iLeft = (int)mTCBase.GetUserPreference(string.Format("{0}\\Left", mTCBase.ActiveForm.Name), this.Left);
+                int iTop = (int)mTCBase.GetUserPreference(string.Format("{0}\\Top", mTCBase.ActiveForm.Name), this.Top);
+                int iWidth = (int)mTCBase.GetUserPreference(string.Format("{0}\\Width", mTCBase.ActiveForm.Name), this.Width);
+                int iHeight = (int)mTCBase.GetUserPreference(string.Format("{0}\\Height", mTCBase.ActiveForm.Name), this.Height);
 				base.AdjustFormPlacement(ref iTop, ref iLeft); //Correct for errant form placement...
 				this.SetBounds(iLeft, iTop, iWidth, iHeight);
-
-                //Since SaveRegistrySetting isn't [yet] smart enough to create a missing parent key when creating sub-keys, 
-                //we'll save our would-be parent key here even though it makes more sense to do so in the UnloadCommand...
-                mTCBase.SaveBounds(mRegistryKey, iLeft, iTop, iWidth, iHeight);
+                mTCBase.SaveBounds(mTCBase.ActiveForm.Name, iLeft, iTop, iWidth, iHeight);
 
                 //Fix ComboBox controls in the active form (SelectionLength)...
                 this.FixComboBoxes(mTCBase.ActiveForm);
@@ -2368,45 +2415,20 @@ namespace TCBase
 		{
 			try {
 				switch ((tbButtonEnum)tbMain.Buttons.IndexOf(e.Button)) {
-					case tbButtonEnum.New:
-						mnuRecordsNew_Click(sender, e);
-						break;
-					case tbButtonEnum.CopyAppend:
-						mnuRecordsCopy_Click(sender, e);
-						break;
-					case tbButtonEnum.Modify:
-						mnuRecordsModify_Click(sender, e);
-						break;
-					case tbButtonEnum.Delete:
-						mnuRecordsDelete_Click(sender, e);
-						break;
-					case tbButtonEnum.Refresh:
-						mnuRecordsRefresh_Click(sender, e);
-						break;
-                    case tbButtonEnum.Filter:
-                        mnuRecordsFilter_Click(sender, e);
-                        break;
-                    case tbButtonEnum.Select:
-						mnuRecordsSelect_Click(sender, e);
-						break;
-                    case tbButtonEnum.Sort:
-                        mnuRecordsSort_Click(sender, e);
-                        break;
-					case tbButtonEnum.List:
-						mnuRecordsList_Click(sender, e);
-						break;
-					case tbButtonEnum.Report:
-						mnuFileReport_Click(sender, e);
-						break;
-					case tbButtonEnum.SQL:
-						mnuFileSQL_Click(sender, e);
-						break;
-					case tbButtonEnum.DumpDataView:
-						mTCBase.DumpDataView();
-						break;
-					case tbButtonEnum.DumpDataTable:
-						mTCBase.DumpDataTable();
-						break;
+					case tbButtonEnum.New:				mnuRecordsNew_Click(sender, e);	break;
+					case tbButtonEnum.CopyAppend:		mnuRecordsCopy_Click(sender, e);break;
+					case tbButtonEnum.Modify:			mnuRecordsModify_Click(sender, e);break;
+					case tbButtonEnum.Delete:			mnuRecordsDelete_Click(sender, e);break;
+					case tbButtonEnum.Refresh:			mnuRecordsRefresh_Click(sender, e);break;
+                    case tbButtonEnum.Filter:           mnuRecordsFilter_Click(sender, e);break;
+                    case tbButtonEnum.Select:			mnuRecordsSelect_Click(sender, e);break;
+					case tbButtonEnum.History:			mnuRecordsHistory_Click(sender, e); break;
+					case tbButtonEnum.Sort:				mnuRecordsSort_Click(sender, e); break;
+					case tbButtonEnum.List:				mnuRecordsList_Click(sender, e);break;
+					case tbButtonEnum.Report:			mnuFileReport_Click(sender, e);break;
+					case tbButtonEnum.SQL:				mnuFileSQL_Click(sender, e);break;
+					case tbButtonEnum.DumpDataView:		mTCBase.DumpDataView();		break;
+					case tbButtonEnum.DumpDataTable:	mTCBase.DumpDataTable();	break;
 				}
 			} catch (Exception ex) {
 				mTCBase.GenericErrorHandler(ex, true);
@@ -2791,9 +2813,27 @@ namespace TCBase
                 Trace(trcType.trcExit, EntryName, trcOption.trcApplication);
             }
         }
-        #endregion
-        #region "Debugging Tools"
-        private void cbBindingContextChanged(object sender, EventArgs e)
+		private void mnuRecordsHistory_Click(object sender, System.EventArgs e)
+		{
+			const string EntryName = "mnuRecordsHistory_Click";
+			try
+			{
+				Trace(trcType.trcEnter, EntryName, trcOption.trcApplication);
+				Boolean AllowUpdate = false;
+				mTCBase.HistoryCommand(ref AllowUpdate);
+			}
+			catch (Exception ex)
+			{
+				mTCBase.GenericErrorHandler(ex, true);
+			}
+			finally
+			{
+				Trace(trcType.trcExit, EntryName, trcOption.trcApplication);
+			}
+		}
+		#endregion
+		#region "Debugging Tools"
+		private void cbBindingContextChanged(object sender, EventArgs e)
 		{
 			Trace("{0}BindingContextChanged: BindingContext:={1}", new object[] {
 				((ComboBox)sender).Name,

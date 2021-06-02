@@ -1,3 +1,14 @@
+//clsDataBaseInfo.cs
+//   DataBase Information (DataView) Object...
+//   Copyright © 1998-2021, Ken Clark
+//*********************************************************************************************************************************
+//
+//   Modification History:
+//   Date:       Description:
+//   10/28/09    Rewritten in VB.NET;
+//   10/08/02    Added History;
+//=================================================================================================================================
+ // ERROR: Not supported in C#: OptionDeclaration
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.Win32;
@@ -32,17 +43,6 @@ using static TCBase.clsSupport;
 using static TCBase.clsTCBase;
 using static TCBase.clsTrace;
 using static TCBase.clsUI;
-//clsDataBaseInfo - clsDataBaseInfo.cls
-//   DataBase Information (DataView) Object...
-//   Copyright © 1998-2018, Ken Clark
-//*********************************************************************************************************************************
-//
-//   Modification History:
-//   Date:       Description:
-//   10/28/09    Rewritten in VB.NET;
-//   10/08/02    Added History;
-//=================================================================================================================================
- // ERROR: Not supported in C#: OptionDeclaration
 namespace TCBase
 {
 	internal class clsDataBaseInfo
