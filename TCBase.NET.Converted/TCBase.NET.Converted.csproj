@@ -315,6 +315,15 @@
     <Import Include="TCBase.clsUI" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\btnFirst.Image.bmp" />
+    <None Include="Resources\btnFirst.Image.ico" />
+    <None Include="Resources\First.ico" />
+    <None Include="Resources\Prev.ico" />
+    <None Include="Resources\Next.ico" />
+    <None Include="Resources\Last.ico" />
+    <None Include="Resources\tp2.bmp" />
+    <None Include="Resources\tp2.jpg" />
+    <None Include="Resources\tp21.jpg" />
     <Content Include="Tools.ico" />
   </ItemGroup>
   <ItemGroup>

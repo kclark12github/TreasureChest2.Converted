@@ -482,163 +482,163 @@ namespace TCBase
 		public System.Windows.Forms.TextBox txtValue;
 		protected internal System.Windows.Forms.Label lblVerified;
 		internal StatusBarPanel sbpTrace;
-		public System.Windows.Forms.DateTimePicker dtpVerified;
+        public System.Windows.Forms.DateTimePicker dtpVerified;
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTCStandard));
-			this.btnLast = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTCStandard));
+			this.btnCancel = new System.Windows.Forms.Button();
+			this.btnExit = new System.Windows.Forms.Button();
 			this.btnFirst = new System.Windows.Forms.Button();
-			this.txtCaption = new System.Windows.Forms.TextBox();
+			this.btnLast = new System.Windows.Forms.Button();
 			this.btnNext = new System.Windows.Forms.Button();
-			this.btnPrev = new System.Windows.Forms.Button();
-			this.sbStatus = new System.Windows.Forms.StatusBar();
-			this.sbpPosition = new System.Windows.Forms.StatusBarPanel();
-			this.sbpMode = new System.Windows.Forms.StatusBarPanel();
-			this.sbpFilter = new System.Windows.Forms.StatusBarPanel();
-			this.sbpSort = new System.Windows.Forms.StatusBarPanel();
-			this.sbpStatus = new System.Windows.Forms.StatusBarPanel();
-			this.sbpMessage = new System.Windows.Forms.StatusBarPanel();
-			this.sbpTrace = new System.Windows.Forms.StatusBarPanel();
-			this.sbpTime = new System.Windows.Forms.StatusBarPanel();
-			this.sbpEndBorder = new System.Windows.Forms.StatusBarPanel();
 			this.btnOK = new System.Windows.Forms.Button();
-			this.txtID = new System.Windows.Forms.TextBox();
-			this.lblID = new System.Windows.Forms.Label();
-			this.tbMain = new System.Windows.Forms.ToolBar();
-			this.tbbSelect = new System.Windows.Forms.ToolBarButton();
-			this.tbbSep1 = new System.Windows.Forms.ToolBarButton();
-			this.tbbNew = new System.Windows.Forms.ToolBarButton();
-			this.tbbCopyAppend = new System.Windows.Forms.ToolBarButton();
-			this.tbbModify = new System.Windows.Forms.ToolBarButton();
-			this.tbbDelete = new System.Windows.Forms.ToolBarButton();
-			this.tbbSep2 = new System.Windows.Forms.ToolBarButton();
-			this.tbbRefresh = new System.Windows.Forms.ToolBarButton();
-			this.tbbSep3 = new System.Windows.Forms.ToolBarButton();
-			this.tbbFilter = new System.Windows.Forms.ToolBarButton();
-			this.tbbHistory = new System.Windows.Forms.ToolBarButton();
-			this.tbbSort = new System.Windows.Forms.ToolBarButton();
-            this.tbbList = new System.Windows.Forms.ToolBarButton();
-			this.tbbSep4 = new System.Windows.Forms.ToolBarButton();
-			this.tbbReport = new System.Windows.Forms.ToolBarButton();
-			this.tbbSQL = new System.Windows.Forms.ToolBarButton();
-			this.tbbSep5 = new System.Windows.Forms.ToolBarButton();
-			this.tbbDumpDataView = new System.Windows.Forms.ToolBarButton();
-			this.tbbDumpDataTable = new System.Windows.Forms.ToolBarButton();
-			this.imgToolbar = new System.Windows.Forms.ImageList(this.components);
-			this.tcMain = new System.Windows.Forms.TabControl();
-			this.tpGeneral = new System.Windows.Forms.TabPage();
-			this.gbGeneral = new System.Windows.Forms.GroupBox();
-			this.lblVerified = new System.Windows.Forms.Label();
-			this.dtpVerified = new System.Windows.Forms.DateTimePicker();
-			this.txtValue = new System.Windows.Forms.TextBox();
-			this.lblValue = new System.Windows.Forms.Label();
-			this.pbGeneral2 = new System.Windows.Forms.PictureBox();
+			this.btnPrev = new System.Windows.Forms.Button();
+			this.cbAlphaSort = new System.Windows.Forms.ComboBox();
+			this.cbLocation = new System.Windows.Forms.ComboBox();
+			this.chkWishList = new System.Windows.Forms.CheckBox();
 			this.ctxImage = new System.Windows.Forms.ContextMenu();
+			this.dtpInventoried = new System.Windows.Forms.DateTimePicker();
+			this.dtpPurchased = new System.Windows.Forms.DateTimePicker();
+			this.dtpVerified = new System.Windows.Forms.DateTimePicker();
+			this.gbGeneral = new System.Windows.Forms.GroupBox();
+			this.hsbGeneral = new System.Windows.Forms.HScrollBar();
+			this.imgToolbar = new System.Windows.Forms.ImageList(this.components);
+			this.lblAlphaSort = new System.Windows.Forms.Label();
+			this.lblID = new System.Windows.Forms.Label();
+			this.lblInventoried = new System.Windows.Forms.Label();
+			this.lblLocation = new System.Windows.Forms.Label();
+			this.lblPrice = new System.Windows.Forms.Label();
+			this.lblPurchased = new System.Windows.Forms.Label();
+			this.lblValue = new System.Windows.Forms.Label();
+			this.lblVerified = new System.Windows.Forms.Label();
+			this.mnuFile = new System.Windows.Forms.MenuItem();
+			this.mnuFileExit = new System.Windows.Forms.MenuItem();
+			this.mnuFileReport = new System.Windows.Forms.MenuItem();
+			this.mnuFileSep = new System.Windows.Forms.MenuItem();
+			this.mnuFileSQL = new System.Windows.Forms.MenuItem();
+			this.mnuFileTrace = new System.Windows.Forms.MenuItem();
 			this.mnuImageClear = new System.Windows.Forms.MenuItem();
 			this.mnuImageCopy = new System.Windows.Forms.MenuItem();
-			this.mnuImagePaste = new System.Windows.Forms.MenuItem();
-			this.mnuImageSep = new System.Windows.Forms.MenuItem();
 			this.mnuImageImport = new System.Windows.Forms.MenuItem();
+			this.mnuImagePaste = new System.Windows.Forms.MenuItem();
 			this.mnuImageSaveAs = new System.Windows.Forms.MenuItem();
-			this.hsbGeneral = new System.Windows.Forms.HScrollBar();
-			this.cbAlphaSort = new System.Windows.Forms.ComboBox();
-			this.txtPrice = new System.Windows.Forms.TextBox();
-			this.lblPrice = new System.Windows.Forms.Label();
-			this.pbGeneral = new System.Windows.Forms.PictureBox();
-			this.chkWishList = new System.Windows.Forms.CheckBox();
-			this.lblPurchased = new System.Windows.Forms.Label();
-			this.dtpPurchased = new System.Windows.Forms.DateTimePicker();
-			this.lblInventoried = new System.Windows.Forms.Label();
-			this.dtpInventoried = new System.Windows.Forms.DateTimePicker();
-			this.cbLocation = new System.Windows.Forms.ComboBox();
-			this.lblLocation = new System.Windows.Forms.Label();
-			this.txtAlphaSort = new System.Windows.Forms.TextBox();
-			this.lblAlphaSort = new System.Windows.Forms.Label();
-			this.tpNotes = new System.Windows.Forms.TabPage();
-			this.rtfNotes = new System.Windows.Forms.RichTextBox();
-			this.timClock = new System.Windows.Forms.Timer(this.components);
-			this.btnExit = new System.Windows.Forms.Button();
-			this.btnCancel = new System.Windows.Forms.Button();
-			this.ofdTCStandard = new System.Windows.Forms.OpenFileDialog();
-			this.sfdTCStandard = new System.Windows.Forms.SaveFileDialog();
+			this.mnuImageSep = new System.Windows.Forms.MenuItem();
 			this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
-			this.mnuFile = new System.Windows.Forms.MenuItem();
-			this.mnuFileReport = new System.Windows.Forms.MenuItem();
-			this.mnuFileSQL = new System.Windows.Forms.MenuItem();
-			this.mnuFileSep = new System.Windows.Forms.MenuItem();
-			this.mnuFileExit = new System.Windows.Forms.MenuItem();
 			this.mnuRecords = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsSelect = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsSep1 = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsNew = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsCopy = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsModify = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsDelete = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsSep2 = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsRefresh = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsSep3 = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsFilter = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsHistory = new System.Windows.Forms.MenuItem();
-			this.mnuRecordsSort = new System.Windows.Forms.MenuItem();
 			this.mnuRecordsList = new System.Windows.Forms.MenuItem();
-			this.mnuFileTrace = new System.Windows.Forms.MenuItem();
-            this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsslblRows = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslblRowFilter = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslblSort = new System.Windows.Forms.ToolStripStatusLabel();
-            ((System.ComponentModel.ISupportInitialize)this.epBase).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpPosition).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpMode).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpFilter).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpSort).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpStatus).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpMessage).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpTrace).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpTime).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpEndBorder).BeginInit();
-			this.tcMain.SuspendLayout();
+			this.mnuRecordsModify = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsNew = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsRefresh = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSelect = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSep1 = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSep2 = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSep3 = new System.Windows.Forms.MenuItem();
+			this.mnuRecordsSort = new System.Windows.Forms.MenuItem();
+			this.ofdTCStandard = new System.Windows.Forms.OpenFileDialog();
+			this.pbGeneral = new System.Windows.Forms.PictureBox();
+			this.pbGeneral2 = new System.Windows.Forms.PictureBox();
+			this.rtfNotes = new System.Windows.Forms.RichTextBox();
+			this.sbpEndBorder = new System.Windows.Forms.StatusBarPanel();
+			this.sbpFilter = new System.Windows.Forms.StatusBarPanel();
+			this.sbpMessage = new System.Windows.Forms.StatusBarPanel();
+			this.sbpMode = new System.Windows.Forms.StatusBarPanel();
+			this.sbpPosition = new System.Windows.Forms.StatusBarPanel();
+			this.sbpSort = new System.Windows.Forms.StatusBarPanel();
+			this.sbpStatus = new System.Windows.Forms.StatusBarPanel();
+			this.sbpTime = new System.Windows.Forms.StatusBarPanel();
+			this.sbpTrace = new System.Windows.Forms.StatusBarPanel();
+			this.sbStatus = new System.Windows.Forms.StatusBar();
+			this.sfdTCStandard = new System.Windows.Forms.SaveFileDialog();
+			this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tbbCopyAppend = new System.Windows.Forms.ToolBarButton();
+			this.tbbDelete = new System.Windows.Forms.ToolBarButton();
+			this.tbbDumpDataTable = new System.Windows.Forms.ToolBarButton();
+			this.tbbDumpDataView = new System.Windows.Forms.ToolBarButton();
+			this.tbbFilter = new System.Windows.Forms.ToolBarButton();
+			this.tbbHistory = new System.Windows.Forms.ToolBarButton();
+			this.tbbList = new System.Windows.Forms.ToolBarButton();
+			this.tbbModify = new System.Windows.Forms.ToolBarButton();
+			this.tbbNew = new System.Windows.Forms.ToolBarButton();
+			this.tbbRefresh = new System.Windows.Forms.ToolBarButton();
+			this.tbbReport = new System.Windows.Forms.ToolBarButton();
+			this.tbbSelect = new System.Windows.Forms.ToolBarButton();
+			this.tbbSep1 = new System.Windows.Forms.ToolBarButton();
+			this.tbbSep2 = new System.Windows.Forms.ToolBarButton();
+			this.tbbSep3 = new System.Windows.Forms.ToolBarButton();
+			this.tbbSep4 = new System.Windows.Forms.ToolBarButton();
+			this.tbbSep5 = new System.Windows.Forms.ToolBarButton();
+			this.tbbSort = new System.Windows.Forms.ToolBarButton();
+			this.tbbSQL = new System.Windows.Forms.ToolBarButton();
+			this.tbMain = new System.Windows.Forms.ToolBar();
+			this.tcMain = new System.Windows.Forms.TabControl();
+			this.timClock = new System.Windows.Forms.Timer(this.components);
+			this.tpGeneral = new System.Windows.Forms.TabPage();
+			this.tpNotes = new System.Windows.Forms.TabPage();
+			this.tsslblRowFilter = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsslblRows = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tsslblSort = new System.Windows.Forms.ToolStripStatusLabel();
+			this.txtAlphaSort = new System.Windows.Forms.TextBox();
+			this.txtCaption = new System.Windows.Forms.TextBox();
+			this.txtID = new System.Windows.Forms.TextBox();
+			this.txtPrice = new System.Windows.Forms.TextBox();
+			this.txtValue = new System.Windows.Forms.TextBox();
+			((System.ComponentModel.ISupportInitialize)(this.epBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpSort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpMessage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpTrace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpEndBorder)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbGeneral2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbGeneral)).BeginInit();
+            this.tcMain.SuspendLayout();
 			this.tpGeneral.SuspendLayout();
 			this.gbGeneral.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)this.pbGeneral2).BeginInit();
-			((System.ComponentModel.ISupportInitialize)this.pbGeneral).BeginInit();
 			this.tpNotes.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.SuspendLayout();
-			//
-			//imgBase
-			//
-			this.imgBase.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("imgBase.ImageStream");
-			this.imgBase.Images.SetKeyName(0, "");
-			this.imgBase.Images.SetKeyName(1, "");
-			this.imgBase.Images.SetKeyName(2, "");
-			this.imgBase.Images.SetKeyName(3, "");
-			this.imgBase.Images.SetKeyName(4, "");
-			this.imgBase.Images.SetKeyName(5, "");
-			this.imgBase.Images.SetKeyName(6, "");
-			this.imgBase.Images.SetKeyName(7, "");
-			this.imgBase.Images.SetKeyName(8, "");
-			this.imgBase.Images.SetKeyName(9, "");
-			this.imgBase.Images.SetKeyName(10, "");
-			this.imgBase.Images.SetKeyName(11, "");
-			this.imgBase.Images.SetKeyName(12, "");
-			this.imgBase.Images.SetKeyName(13, "");
-			this.imgBase.Images.SetKeyName(14, "");
-			this.imgBase.Images.SetKeyName(15, "");
-			this.imgBase.Images.SetKeyName(16, "");
-			this.imgBase.Images.SetKeyName(17, "");
-			this.imgBase.Images.SetKeyName(18, "");
-			this.imgBase.Images.SetKeyName(19, "");
-			this.imgBase.Images.SetKeyName(20, "");
-			this.imgBase.Images.SetKeyName(21, "");
-			this.imgBase.Images.SetKeyName(22, "");
-			this.imgBase.Images.SetKeyName(23, "CHECKMRK.ICO");
-			this.imgBase.Images.SetKeyName(24, "");
+            // 
+            // imgBase
+            // 
+            this.imgBase.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgBase.ImageStream")));
+            this.imgBase.Images.SetKeyName(0, "");
+            this.imgBase.Images.SetKeyName(1, "");
+            this.imgBase.Images.SetKeyName(2, "");
+            this.imgBase.Images.SetKeyName(3, "");
+            this.imgBase.Images.SetKeyName(4, "");
+            this.imgBase.Images.SetKeyName(5, "");
+            this.imgBase.Images.SetKeyName(6, "");
+            this.imgBase.Images.SetKeyName(7, "");
+            this.imgBase.Images.SetKeyName(8, "");
+            this.imgBase.Images.SetKeyName(9, "");
+            this.imgBase.Images.SetKeyName(10, "");
+            this.imgBase.Images.SetKeyName(11, "");
+            this.imgBase.Images.SetKeyName(12, "");
+            this.imgBase.Images.SetKeyName(13, "");
+            this.imgBase.Images.SetKeyName(14, "");
+            this.imgBase.Images.SetKeyName(15, "");
+            this.imgBase.Images.SetKeyName(16, "");
+            this.imgBase.Images.SetKeyName(17, "");
+            this.imgBase.Images.SetKeyName(18, "");
+            this.imgBase.Images.SetKeyName(19, "");
+            this.imgBase.Images.SetKeyName(20, "");
+            this.imgBase.Images.SetKeyName(21, "");
+            this.imgBase.Images.SetKeyName(22, "");
+            this.imgBase.Images.SetKeyName(23, "CHECKMRK.ICO");
+            this.imgBase.Images.SetKeyName(24, "");
 			//
 			//btnLast
 			//
-			this.btnLast.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
+			this.btnLast.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right); 
 			this.btnLast.Image = (System.Drawing.Image)resources.GetObject("btnLast.Image");
 			this.btnLast.Location = new System.Drawing.Point(488, 344);
 			this.btnLast.Name = "btnLast";
@@ -649,31 +649,32 @@ namespace TCBase
 			//btnFirst
 			//
 			this.btnFirst.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.btnFirst.Image = (System.Drawing.Image)resources.GetObject("btnFirst.Image");
+			this.btnFirst.Image = (System.Drawing.Image)(resources.GetObject("btnFirst.Image"));
 			this.btnFirst.Location = new System.Drawing.Point(104, 344);
 			this.btnFirst.Name = "btnFirst";
 			this.btnFirst.Size = new System.Drawing.Size(25, 25);
 			this.btnFirst.TabIndex = 24;
 			this.btnFirst.TabStop = false;
-			//
-			//txtCaption
-			//
-			this.txtCaption.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.txtCaption.Enabled = false;
-			this.txtCaption.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.txtCaption.Location = new System.Drawing.Point(156, 344);
-			this.txtCaption.Name = "txtCaption";
-			this.txtCaption.ReadOnly = true;
-			this.txtCaption.Size = new System.Drawing.Size(296, 23);
-			this.txtCaption.TabIndex = 23;
-			this.txtCaption.TabStop = false;
-			this.txtCaption.Tag = "Ignore";
-			this.txtCaption.Text = "txtCaption";
+			// 
+			// txtCaption
+			// 
+			this.txtCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCaption.Enabled = false;
+            this.txtCaption.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCaption.Location = new System.Drawing.Point(156, 344);
+            this.txtCaption.Name = "txtCaption";
+            this.txtCaption.ReadOnly = true;
+            this.txtCaption.Size = new System.Drawing.Size(296, 23);
+            this.txtCaption.TabIndex = 23;
+            this.txtCaption.TabStop = false;
+            this.txtCaption.Tag = "Ignore";
+            this.txtCaption.Text = "txtCaption";
 			//
 			//btnNext
 			//
 			this.btnNext.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
-			this.btnNext.Image = (System.Drawing.Image)resources.GetObject("btnNext.Image");
+			this.btnNext.Image = (System.Drawing.Image)(resources.GetObject("btnNext.Image"));
 			this.btnNext.Location = new System.Drawing.Point(460, 344);
 			this.btnNext.Name = "btnNext";
 			this.btnNext.Size = new System.Drawing.Size(25, 25);
@@ -683,162 +684,141 @@ namespace TCBase
 			//btnPrev
 			//
 			this.btnPrev.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.btnPrev.Image = (System.Drawing.Image)resources.GetObject("btnPrev.Image");
+			this.btnPrev.Image = (System.Drawing.Image)(resources.GetObject("btnPrev.Image"));
 			this.btnPrev.Location = new System.Drawing.Point(128, 344);
 			this.btnPrev.Name = "btnPrev";
 			this.btnPrev.Size = new System.Drawing.Size(25, 25);
 			this.btnPrev.TabIndex = 21;
 			this.btnPrev.TabStop = false;
-			//
-			//sbStatus
-			//
-			this.sbStatus.Location = new System.Drawing.Point(0, 244);
-			this.sbStatus.Name = "sbStatus";
-			this.sbStatus.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-				this.sbpPosition,
-				this.sbpMode,
-				this.sbpFilter,
-				this.sbpSort,
-				this.sbpStatus,
-				this.sbpMessage,
-				this.sbpTrace,
-				this.sbpTime,
-				this.sbpEndBorder
-			});
-			this.sbStatus.ShowPanels = true;
-			this.sbStatus.Size = new System.Drawing.Size(296, 22);
-			this.sbStatus.TabIndex = 20;
-			//
-			//sbpPosition
-			//
-			this.sbpPosition.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-			this.sbpPosition.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpPosition.Name = "sbpPosition";
-			this.sbpPosition.Text = "Record x of y";
-			this.sbpPosition.ToolTipText = "Record Position";
-			this.sbpPosition.Width = 80;
-			//
-			//sbpMode
-			//
-			this.sbpMode.Alignment = System.Windows.Forms.HorizontalAlignment.Center;
-			this.sbpMode.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpMode.Name = "sbpMode";
-			this.sbpMode.Text = "Mode";
-			this.sbpMode.ToolTipText = "Mode";
-			this.sbpMode.Width = 43;
-			//
-			//sbpFilter
-			//
-			this.sbpFilter.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpFilter.Name = "sbpFilter";
-			this.sbpFilter.Text = "Filter";
-			this.sbpFilter.ToolTipText = "Filter";
-			this.sbpFilter.Width = 39;
-			//
-			//sbpSort
-			//
-			this.sbpSort.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpSort.Name = "sbpSort";
-			this.sbpSort.Text = "Sort";
-			this.sbpSort.ToolTipText = "Sort";
-			this.sbpSort.Width = 43;
-			//
-			//sbpStatus
-			//
-			this.sbpStatus.Alignment = System.Windows.Forms.HorizontalAlignment.Center;
-			this.sbpStatus.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpStatus.Name = "sbpStatus";
-			this.sbpStatus.Text = "Status";
-			this.sbpStatus.ToolTipText = "Status";
-			this.sbpStatus.Width = 46;
-			//
-			//sbpMessage
-			//
-			this.sbpMessage.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-			this.sbpMessage.Name = "sbpMessage";
-			this.sbpMessage.Text = "Message";
-			this.sbpMessage.ToolTipText = "Message";
-			this.sbpMessage.Width = 10;
-			//
-			//sbpTrace
-			//
-			this.sbpTrace.MinWidth = 0;
-			this.sbpTrace.Name = "sbpTrace";
-			this.sbpTrace.Width = 0;
-			//
-			//sbpTime
-			//
-			this.sbpTime.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-			this.sbpTime.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-			this.sbpTime.MinWidth = 70;
-			this.sbpTime.Name = "sbpTime";
-			this.sbpTime.Text = "12:59 PM";
-			this.sbpTime.Width = 70;
-			//
-			//sbpEndBorder
-			//
-			this.sbpEndBorder.MinWidth = 1;
-			this.sbpEndBorder.Name = "sbpEndBorder";
-			this.sbpEndBorder.Width = 1;
+			// 
+			// sbStatus
+			// 
+			this.sbStatus.Location = new System.Drawing.Point(0, 222);
+            this.sbStatus.Name = "sbStatus";
+            this.sbStatus.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
+            this.sbpPosition,
+            this.sbpMode,
+            this.sbpFilter,
+            this.sbpSort,
+            this.sbpStatus,
+            this.sbpMessage,
+            this.sbpTrace,
+            this.sbpTime,
+            this.sbpEndBorder});
+            this.sbStatus.ShowPanels = true;
+            this.sbStatus.Size = new System.Drawing.Size(296, 22);
+            this.sbStatus.TabIndex = 20;
+            // 
+            // sbpPosition
+            // 
+            this.sbpPosition.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sbpPosition.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpPosition.Name = "sbpPosition";
+            this.sbpPosition.Text = "Record x of y";
+            this.sbpPosition.ToolTipText = "Record Position";
+            this.sbpPosition.Width = 80;
+            // 
+            // sbpMode
+            // 
+            this.sbpMode.Alignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.sbpMode.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpMode.Name = "sbpMode";
+            this.sbpMode.Text = "Mode";
+            this.sbpMode.ToolTipText = "Mode";
+            this.sbpMode.Width = 43;
+            // 
+            // sbpFilter
+            // 
+            this.sbpFilter.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpFilter.Name = "sbpFilter";
+            this.sbpFilter.Text = "Filter";
+            this.sbpFilter.ToolTipText = "Filter";
+            this.sbpFilter.Width = 39;
+            // 
+            // sbpSort
+            // 
+            this.sbpSort.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpSort.Name = "sbpSort";
+            this.sbpSort.Text = "Sort";
+            this.sbpSort.ToolTipText = "Sort";
+            this.sbpSort.Width = 35;
+            // 
+            // sbpStatus
+            // 
+            this.sbpStatus.Alignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.sbpStatus.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpStatus.Name = "sbpStatus";
+            this.sbpStatus.Text = "Status";
+            this.sbpStatus.ToolTipText = "Status";
+            this.sbpStatus.Width = 46;
+            // 
+            // sbpMessage
+            // 
+            this.sbpMessage.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            this.sbpMessage.Name = "sbpMessage";
+            this.sbpMessage.Text = "Message";
+            this.sbpMessage.ToolTipText = "Message";
+            this.sbpMessage.Width = 10;
+            // 
+            // sbpTrace
+            // 
+            this.sbpTrace.MinWidth = 0;
+            this.sbpTrace.Name = "sbpTrace";
+            this.sbpTrace.Width = 0;
+            // 
+            // sbpTime
+            // 
+            this.sbpTime.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sbpTime.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            this.sbpTime.MinWidth = 70;
+            this.sbpTime.Name = "sbpTime";
+            this.sbpTime.Text = "12:59 PM";
+            this.sbpTime.Width = 70;
+            // 
+            // sbpEndBorder
+            // 
+            this.sbpEndBorder.MinWidth = 1;
+            this.sbpEndBorder.Name = "sbpEndBorder";
+            this.sbpEndBorder.Width = 1;
 			//
 			//btnOK
 			//
-			this.btnOK.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
+			this.btnOK.Anchor =(System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
 			this.btnOK.Location = new System.Drawing.Point(520, 344);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 25);
 			this.btnOK.TabIndex = 18;
 			this.btnOK.Text = "OK";
-			//
-			//txtID
-			//
-			this.txtID.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.txtID.BackColor = System.Drawing.SystemColors.Control;
-			this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtID.Enabled = false;
-			this.txtID.Location = new System.Drawing.Point(40, 348);
-			this.txtID.Name = "txtID";
-			this.txtID.ReadOnly = true;
-			this.txtID.Size = new System.Drawing.Size(52, 16);
-			this.txtID.TabIndex = 17;
-			this.txtID.TabStop = false;
-			this.txtID.Tag = "Ignore";
-			this.txtID.Text = "txtID";
-			//
-			//lblID
-			//
-			this.lblID.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.lblID.AutoSize = true;
-			this.lblID.Location = new System.Drawing.Point(12, 347);
-			this.lblID.Name = "lblID";
-			this.lblID.Size = new System.Drawing.Size(22, 16);
-			this.lblID.TabIndex = 16;
-			this.lblID.Text = "ID";
+			// 
+			// txtID
+			// 
+			this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(40, 348);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(52, 16);
+            this.txtID.TabIndex = 17;
+            this.txtID.TabStop = false;
+            this.txtID.Tag = "Ignore";
+            this.txtID.Text = "txtID";
+            // 
+            // lblID
+            // 
+            this.lblID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(12, 347);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(22, 16);
+            this.lblID.TabIndex = 16;
+            this.lblID.Text = "ID";
 			//
 			//tbMain
 			//
-			this.tbMain.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.tbMain.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-				this.tbbSelect,
-				this.tbbSep1,
-				this.tbbNew,
-				this.tbbCopyAppend,
-				this.tbbModify,
-				this.tbbDelete,
-				this.tbbSep2,
-				this.tbbRefresh,
-				this.tbbSep3,
-				this.tbbFilter,
-                this.tbbSort,
-				this.tbbList,
-				this.tbbSep4,
-				this.tbbHistory,
-				this.tbbReport,
-				this.tbbSQL,
-				this.tbbSep5,
-				this.tbbDumpDataView,
-				this.tbbDumpDataTable
-			});
+			this.tbMain.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
+			this.tbMain.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] { this.tbbSelect, this.tbbSep1, this.tbbNew, this.tbbCopyAppend, this.tbbModify, this.tbbDelete, this.tbbSep2, this.tbbRefresh, this.tbbSep3, this.tbbFilter, this.tbbSort, this.tbbList, this.tbbSep4, this.tbbHistory, this.tbbReport, this.tbbSQL, this.tbbSep5, this.tbbDumpDataView, this.tbbDumpDataTable });
 			this.tbMain.ButtonSize = new System.Drawing.Size(24, 24);
 			this.tbMain.Dock = System.Windows.Forms.DockStyle.None;
 			this.tbMain.DropDownArrows = true;
@@ -848,167 +828,167 @@ namespace TCBase
 			this.tbMain.ShowToolTips = true;
 			this.tbMain.Size = new System.Drawing.Size(776, 28);
 			this.tbMain.TabIndex = 14;
-			//
-			//tbbSelect
-			//
+			// 
+			// tbbSelect
+			// 
 			this.tbbSelect.ImageIndex = 0;
-			this.tbbSelect.Name = "tbbSelect";
-			this.tbbSelect.ToolTipText = "Select";
-			this.tbbSelect.Visible = false;
-			//
-			//tbbSep1
-			//
-			this.tbbSep1.Name = "tbbSep1";
-			this.tbbSep1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			this.tbbSep1.Visible = false;
-			//
-			//tbbNew
-			//
-			this.tbbNew.ImageIndex = 1;
-			this.tbbNew.Name = "tbbNew";
-			this.tbbNew.ToolTipText = "New";
-			//
-			//tbbCopyAppend
-			//
-			this.tbbCopyAppend.ImageIndex = 11;
-			this.tbbCopyAppend.Name = "tbbCopyAppend";
-			this.tbbCopyAppend.ToolTipText = "Copy/Append";
-			//
-			//tbbModify
-			//
-			this.tbbModify.ImageIndex = 2;
-			this.tbbModify.Name = "tbbModify";
-			this.tbbModify.ToolTipText = "Modify";
-			//
-			//tbbDelete
-			//
-			this.tbbDelete.ImageIndex = 3;
-			this.tbbDelete.Name = "tbbDelete";
-			this.tbbDelete.ToolTipText = "Delete";
-			//
-			//tbbSep2
-			//
-			this.tbbSep2.Name = "tbbSep2";
-			this.tbbSep2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			this.tbbSep2.Visible = false;
-			//
-			//tbbRefresh
-			//
-			this.tbbRefresh.ImageIndex = 4;
-			this.tbbRefresh.Name = "tbbRefresh";
-			this.tbbRefresh.ToolTipText = "Refresh";
-			this.tbbRefresh.Visible = false;
-			//
-			//tbbSep3
-			//
-			this.tbbSep3.Name = "tbbSep3";
-			this.tbbSep3.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			//
-			//tbbFilter
-			//
-			this.tbbFilter.ImageIndex = 5;
-			this.tbbFilter.Name = "tbbFilter";
-			this.tbbFilter.ToolTipText = "Filter";
-            //
-            //tbbSort
-            //
+            this.tbbSelect.Name = "tbbSelect";
+            this.tbbSelect.ToolTipText = "Select";
+            this.tbbSelect.Visible = false;
+            // 
+            // tbbSep1
+            // 
+            this.tbbSep1.Name = "tbbSep1";
+            this.tbbSep1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            this.tbbSep1.Visible = false;
+            // 
+            // tbbNew
+            // 
+            this.tbbNew.ImageIndex = 1;
+            this.tbbNew.Name = "tbbNew";
+            this.tbbNew.ToolTipText = "New";
+            // 
+            // tbbCopyAppend
+            // 
+            this.tbbCopyAppend.ImageIndex = 11;
+            this.tbbCopyAppend.Name = "tbbCopyAppend";
+            this.tbbCopyAppend.ToolTipText = "Copy/Append";
+            // 
+            // tbbModify
+            // 
+            this.tbbModify.ImageIndex = 2;
+            this.tbbModify.Name = "tbbModify";
+            this.tbbModify.ToolTipText = "Modify";
+            // 
+            // tbbDelete
+            // 
+            this.tbbDelete.ImageIndex = 3;
+            this.tbbDelete.Name = "tbbDelete";
+            this.tbbDelete.ToolTipText = "Delete";
+            // 
+            // tbbSep2
+            // 
+            this.tbbSep2.Name = "tbbSep2";
+            this.tbbSep2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            this.tbbSep2.Visible = false;
+            // 
+            // tbbRefresh
+            // 
+            this.tbbRefresh.ImageIndex = 4;
+            this.tbbRefresh.Name = "tbbRefresh";
+            this.tbbRefresh.ToolTipText = "Refresh";
+            this.tbbRefresh.Visible = false;
+            // 
+            // tbbSep3
+            // 
+            this.tbbSep3.Name = "tbbSep3";
+            this.tbbSep3.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // tbbFilter
+            // 
+            this.tbbFilter.ImageIndex = 5;
+            this.tbbFilter.Name = "tbbFilter";
+            this.tbbFilter.ToolTipText = "Filter";
+            // 
+            // tbbHistory
+            // 
+            this.tbbHistory.ImageIndex = 14;
+            this.tbbHistory.Name = "tbbHistory";
+            this.tbbHistory.ToolTipText = "History";
+            // 
+            // tbbSort
+            // 
             this.tbbSort.ImageIndex = 13;
             this.tbbSort.Name = "tbbSort";
             this.tbbSort.ToolTipText = "Sort";
-			//
-			//tbbHistory
-			//
-			this.tbbHistory.ImageIndex = 14;
-			this.tbbHistory.Name = "tbbHistory";
-			this.tbbHistory.ToolTipText = "History";
-			//
-			//tbbList
-			//
-			this.tbbList.ImageIndex = 6;
-			this.tbbList.Name = "tbbList";
-			this.tbbList.ToolTipText = "List";
-			//
-			//tbbSep4
-			//
-			this.tbbSep4.Name = "tbbSep4";
-			this.tbbSep4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			//
-			//tbbReport
-			//
-			this.tbbReport.ImageIndex = 10;
-			this.tbbReport.Name = "tbbReport";
-			this.tbbReport.ToolTipText = "Report";
-			//
-			//tbbSQL
-			//
-			this.tbbSQL.ImageIndex = 9;
-			this.tbbSQL.Name = "tbbSQL";
-			this.tbbSQL.ToolTipText = "SQL";
-			//
-			//tbbSep5
-			//
-			this.tbbSep5.Name = "tbbSep5";
-			this.tbbSep5.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-			//
-			//tbbDumpDataView
-			//
-			this.tbbDumpDataView.ImageIndex = 12;
-			this.tbbDumpDataView.Name = "tbbDumpDataView";
-			this.tbbDumpDataView.ToolTipText = "Dump tcDataView";
-			this.tbbDumpDataView.Visible = false;
-			//
-			//tbbDumpDataTable
-			//
-			this.tbbDumpDataTable.ImageIndex = 12;
-			this.tbbDumpDataTable.Name = "tbbDumpDataTable";
-			this.tbbDumpDataTable.ToolTipText = "Dump tcDataTable";
-			this.tbbDumpDataTable.Visible = false;
-			//
-			//imgToolbar
-			//
-			this.imgToolbar.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("imgToolbar.ImageStream");
-			this.imgToolbar.TransparentColor = System.Drawing.Color.Transparent;
-			this.imgToolbar.Images.SetKeyName(0, "");
-			this.imgToolbar.Images.SetKeyName(1, "");
-			this.imgToolbar.Images.SetKeyName(2, "");
-			this.imgToolbar.Images.SetKeyName(3, "");
-			this.imgToolbar.Images.SetKeyName(4, "");
-			this.imgToolbar.Images.SetKeyName(5, "");
-			this.imgToolbar.Images.SetKeyName(6, "");
-			this.imgToolbar.Images.SetKeyName(7, "");
-			this.imgToolbar.Images.SetKeyName(8, "");
-			this.imgToolbar.Images.SetKeyName(9, "");
-			this.imgToolbar.Images.SetKeyName(10, "");
-			this.imgToolbar.Images.SetKeyName(11, "");
-			this.imgToolbar.Images.SetKeyName(12, "");
-			this.imgToolbar.Images.SetKeyName(13, "Sort.ico");
-			this.imgToolbar.Images.SetKeyName(14, "History.ico");
-			//
-			//tcMain
-			//
-			this.tcMain.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.tcMain.Controls.Add(this.tpGeneral);
-			this.tcMain.Controls.Add(this.tpNotes);
-			this.tcMain.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.tcMain.Location = new System.Drawing.Point(8, 32);
-			this.tcMain.Name = "tcMain";
-			this.tcMain.SelectedIndex = 0;
-			this.tcMain.Size = new System.Drawing.Size(664, 300);
-			this.tcMain.TabIndex = 0;
-			//
-			//tpGeneral
-			//
-			this.tpGeneral.Controls.Add(this.gbGeneral);
-			this.tpGeneral.Location = new System.Drawing.Point(4, 25);
-			this.tpGeneral.Name = "tpGeneral";
-			this.tpGeneral.Size = new System.Drawing.Size(656, 271);
-			this.tpGeneral.TabIndex = 0;
-			this.tpGeneral.Text = "General";
+            // 
+            // tbbList
+            // 
+            this.tbbList.ImageIndex = 6;
+            this.tbbList.Name = "tbbList";
+            this.tbbList.ToolTipText = "List";
+            // 
+            // tbbSep4
+            // 
+            this.tbbSep4.Name = "tbbSep4";
+            this.tbbSep4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // tbbReport
+            // 
+            this.tbbReport.ImageIndex = 10;
+            this.tbbReport.Name = "tbbReport";
+            this.tbbReport.ToolTipText = "Report";
+            // 
+            // tbbSQL
+            // 
+            this.tbbSQL.ImageIndex = 9;
+            this.tbbSQL.Name = "tbbSQL";
+            this.tbbSQL.ToolTipText = "SQL";
+            // 
+            // tbbSep5
+            // 
+            this.tbbSep5.Name = "tbbSep5";
+            this.tbbSep5.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // tbbDumpDataView
+            // 
+            this.tbbDumpDataView.ImageIndex = 12;
+            this.tbbDumpDataView.Name = "tbbDumpDataView";
+            this.tbbDumpDataView.ToolTipText = "Dump tcDataView";
+            this.tbbDumpDataView.Visible = false;
+            // 
+            // tbbDumpDataTable
+            // 
+            this.tbbDumpDataTable.ImageIndex = 12;
+            this.tbbDumpDataTable.Name = "tbbDumpDataTable";
+            this.tbbDumpDataTable.ToolTipText = "Dump tcDataTable";
+            this.tbbDumpDataTable.Visible = false;
+            // 
+            // imgToolbar
+            // 
+            this.imgToolbar.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgToolbar.ImageStream")));
+            this.imgToolbar.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgToolbar.Images.SetKeyName(0, "");
+            this.imgToolbar.Images.SetKeyName(1, "");
+            this.imgToolbar.Images.SetKeyName(2, "");
+            this.imgToolbar.Images.SetKeyName(3, "");
+            this.imgToolbar.Images.SetKeyName(4, "");
+            this.imgToolbar.Images.SetKeyName(5, "");
+            this.imgToolbar.Images.SetKeyName(6, "");
+            this.imgToolbar.Images.SetKeyName(7, "");
+            this.imgToolbar.Images.SetKeyName(8, "");
+            this.imgToolbar.Images.SetKeyName(9, "");
+            this.imgToolbar.Images.SetKeyName(10, "");
+            this.imgToolbar.Images.SetKeyName(11, "");
+            this.imgToolbar.Images.SetKeyName(12, "");
+            this.imgToolbar.Images.SetKeyName(13, "Sort.ico");
+            this.imgToolbar.Images.SetKeyName(14, "History.ico");
+            // 
+            // tcMain
+            // 
+            this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tcMain.Controls.Add(this.tpGeneral);
+            this.tcMain.Controls.Add(this.tpNotes);
+            this.tcMain.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcMain.Location = new System.Drawing.Point(8, 32);
+            this.tcMain.Name = "tcMain";
+            this.tcMain.SelectedIndex = 0;
+            this.tcMain.Size = new System.Drawing.Size(664, 300);
+            this.tcMain.TabIndex = 0;
+            // 
+            // tpGeneral
+            // 
+            this.tpGeneral.Location = new System.Drawing.Point(4, 25);
+            this.tpGeneral.Name = "tpGeneral";
+            this.tpGeneral.Size = new System.Drawing.Size(656, 271);
+            this.tpGeneral.TabIndex = 0;
+            this.tpGeneral.Text = "General";
 			//
 			//gbGeneral
 			//
-			this.gbGeneral.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.gbGeneral.AutoSize = false;
+			this.gbGeneral.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 			this.gbGeneral.BackColor = System.Drawing.SystemColors.Control;
 			this.gbGeneral.Controls.Add(this.lblVerified);
 			this.gbGeneral.Controls.Add(this.dtpVerified);
@@ -1034,57 +1014,57 @@ namespace TCBase
 			this.gbGeneral.Size = new System.Drawing.Size(644, 256);
 			this.gbGeneral.TabIndex = 0;
 			this.gbGeneral.TabStop = false;
-			//
-			//lblVerified
-			//
-			this.lblVerified.AutoSize = true;
-			this.lblVerified.Location = new System.Drawing.Point(72, 72);
-			this.lblVerified.Name = "lblVerified";
-			this.lblVerified.Size = new System.Drawing.Size(57, 16);
-			this.lblVerified.TabIndex = 84;
-			this.lblVerified.Text = "Verified";
-			this.lblVerified.Visible = false;
-			//
-			//dtpVerified
-			//
-			this.dtpVerified.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.dtpVerified.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpVerified.Location = new System.Drawing.Point(176, 68);
-			this.dtpVerified.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
-			this.dtpVerified.Name = "dtpVerified";
-			this.dtpVerified.Size = new System.Drawing.Size(116, 23);
-			this.dtpVerified.TabIndex = 83;
-			this.dtpVerified.Tag = "Nulls";
-			this.ttBase.SetToolTip(this.dtpVerified, "Date the replacement value of this item was verified with common retailers");
-			this.dtpVerified.Visible = false;
-			//
-			//txtValue
-			//
-			this.txtValue.Location = new System.Drawing.Point(64, 96);
-			this.txtValue.Name = "txtValue";
-			this.txtValue.Size = new System.Drawing.Size(100, 23);
-			this.txtValue.TabIndex = 82;
-			this.txtValue.Tag = "Money,Nulls";
-			this.txtValue.Text = "txtValue";
-			this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ttBase.SetToolTip(this.txtValue, "Replacement value of this item");
-			this.txtValue.Visible = false;
-			//
-			//lblValue
-			//
-			this.lblValue.AutoSize = true;
-			this.lblValue.Location = new System.Drawing.Point(16, 100);
-			this.lblValue.Name = "lblValue";
-			this.lblValue.Size = new System.Drawing.Size(44, 16);
-			this.lblValue.TabIndex = 81;
-			this.lblValue.Text = "Value";
-			this.lblValue.Visible = false;
+            // 
+            // lblVerified
+            // 
+            this.lblVerified.AutoSize = true;
+            this.lblVerified.Location = new System.Drawing.Point(72, 72);
+            this.lblVerified.Name = "lblVerified";
+            this.lblVerified.Size = new System.Drawing.Size(57, 16);
+            this.lblVerified.TabIndex = 84;
+            this.lblVerified.Text = "Verified";
+            this.lblVerified.Visible = false;
+            // 
+            // dtpVerified
+            // 
+            this.dtpVerified.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpVerified.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpVerified.Location = new System.Drawing.Point(176, 68);
+            this.dtpVerified.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
+            this.dtpVerified.Name = "dtpVerified";
+            this.dtpVerified.Size = new System.Drawing.Size(116, 20);
+            this.dtpVerified.TabIndex = 83;
+            this.dtpVerified.Tag = "Nulls";
+            this.ttBase.SetToolTip(this.dtpVerified, "Date the replacement value of this item was verified with common retailers");
+            this.dtpVerified.Visible = false;
+            // 
+            // txtValue
+            // 
+            this.txtValue.Location = new System.Drawing.Point(64, 96);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(100, 20);
+            this.txtValue.TabIndex = 82;
+            this.txtValue.Tag = "Money,Nulls";
+            this.txtValue.Text = "txtValue";
+            this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ttBase.SetToolTip(this.txtValue, "Replacement value of this item");
+            this.txtValue.Visible = false;
+            // 
+            // lblValue
+            // 
+            this.lblValue.AutoSize = true;
+            this.lblValue.Location = new System.Drawing.Point(16, 100);
+            this.lblValue.Name = "lblValue";
+            this.lblValue.Size = new System.Drawing.Size(44, 16);
+            this.lblValue.TabIndex = 81;
+            this.lblValue.Text = "Value";
+            this.lblValue.Visible = false;
 			//
 			//pbGeneral2
 			//
-			this.pbGeneral2.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
+			this.pbGeneral2.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 			this.pbGeneral2.ContextMenu = this.ctxImage;
-			this.pbGeneral2.Image = (System.Drawing.Image)resources.GetObject("pbGeneral2.Image");
+			this.pbGeneral2.Image = (System.Drawing.Image)(resources.GetObject("pbGeneral2.Image"));
 			this.pbGeneral2.Location = new System.Drawing.Point(500, 38);
 			this.pbGeneral2.Name = "pbGeneral2";
 			this.pbGeneral2.Size = new System.Drawing.Size(129, 89);
@@ -1094,14 +1074,7 @@ namespace TCBase
 			//
 			//ctxImage
 			//
-			this.ctxImage.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-				this.mnuImageClear,
-				this.mnuImageCopy,
-				this.mnuImagePaste,
-				this.mnuImageSep,
-				this.mnuImageImport,
-				this.mnuImageSaveAs
-			});
+			this.ctxImage.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { this.mnuImageClear, this.mnuImageCopy, this.mnuImagePaste, this.mnuImageSep, this.mnuImageImport, this.mnuImageSaveAs });
 			//
 			//mnuImageClear
 			//
@@ -1119,12 +1092,12 @@ namespace TCBase
 			this.mnuImagePaste.Index = 2;
 			this.mnuImagePaste.Text = "&Paste";
 			this.mnuImagePaste.Visible = false;
-			//
-			//mnuImageSep
-			//
+			// 
+			// mnuImageSep
+			// 
 			this.mnuImageSep.Index = 3;
-			this.mnuImageSep.Text = "-";
-			this.mnuImageSep.Visible = false;
+            this.mnuImageSep.Text = "-";
+            this.mnuImageSep.Visible = false;
 			//
 			//mnuImageImport
 			//
@@ -1136,161 +1109,164 @@ namespace TCBase
 			//
 			this.mnuImageSaveAs.Index = 5;
 			this.mnuImageSaveAs.Text = "Save &As";
-			//
-			//hsbGeneral
-			//
-			this.hsbGeneral.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.hsbGeneral.LargeChange = 1;
-			this.hsbGeneral.Location = new System.Drawing.Point(540, 148);
-			this.hsbGeneral.Maximum = 1;
-			this.hsbGeneral.Name = "hsbGeneral";
-			this.hsbGeneral.Size = new System.Drawing.Size(48, 17);
-			this.hsbGeneral.TabIndex = 79;
-			//
-			//cbAlphaSort
-			//
-			this.cbAlphaSort.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.cbAlphaSort.Location = new System.Drawing.Point(88, 188);
-			this.cbAlphaSort.Name = "cbAlphaSort";
-			this.cbAlphaSort.Size = new System.Drawing.Size(520, 24);
-			this.cbAlphaSort.Sorted = true;
-			this.cbAlphaSort.TabIndex = 48;
-			this.cbAlphaSort.Tag = "UPPER";
-			this.cbAlphaSort.Text = "cbAlphaSort";
-			//
-			//txtPrice
-			//
-			this.txtPrice.Location = new System.Drawing.Point(294, 117);
-			this.txtPrice.Name = "txtPrice";
-			this.txtPrice.Size = new System.Drawing.Size(100, 23);
-			this.txtPrice.TabIndex = 59;
-			this.txtPrice.Tag = "Money,Nulls";
-			this.txtPrice.Text = "txtPrice";
-			this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ttBase.SetToolTip(this.txtPrice, "Purchase price of this item");
-			//
-			//lblPrice
-			//
-			this.lblPrice.AutoSize = true;
-			this.lblPrice.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.lblPrice.Location = new System.Drawing.Point(246, 119);
-			this.lblPrice.Name = "lblPrice";
-			this.lblPrice.Size = new System.Drawing.Size(40, 16);
-			this.lblPrice.TabIndex = 58;
-			this.lblPrice.Text = "Price";
+			// 
+			// hsbGeneral
+			// 
+			this.hsbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.hsbGeneral.LargeChange = 1;
+            this.hsbGeneral.Location = new System.Drawing.Point(540, 148);
+            this.hsbGeneral.Maximum = 1;
+            this.hsbGeneral.Name = "hsbGeneral";
+            this.hsbGeneral.Size = new System.Drawing.Size(48, 17);
+            this.hsbGeneral.TabIndex = 79;
+            // 
+            // cbAlphaSort
+            // 
+            this.cbAlphaSort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAlphaSort.Location = new System.Drawing.Point(88, 188);
+            this.cbAlphaSort.Name = "cbAlphaSort";
+            this.cbAlphaSort.Size = new System.Drawing.Size(520, 21);
+            this.cbAlphaSort.Sorted = true;
+            this.cbAlphaSort.TabIndex = 48;
+            this.cbAlphaSort.Tag = "UPPER";
+            this.cbAlphaSort.Text = "cbAlphaSort";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(294, 117);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtPrice.TabIndex = 59;
+            this.txtPrice.Tag = "Money,Nulls";
+            this.txtPrice.Text = "txtPrice";
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ttBase.SetToolTip(this.txtPrice, "Purchase price of this item");
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(246, 119);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(40, 16);
+            this.lblPrice.TabIndex = 58;
+            this.lblPrice.Text = "Price";
 			//
 			//pbGeneral
 			//
-			this.pbGeneral.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.pbGeneral.BackgroundImage = (System.Drawing.Image)resources.GetObject("pbGeneral.BackgroundImage");
+			this.pbGeneral.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
+			this.pbGeneral.BackgroundImage = (System.Drawing.Image)(resources.GetObject("pbGeneral.BackgroundImage"));
 			this.pbGeneral.ContextMenu = this.ctxImage;
-			this.pbGeneral.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.pbGeneral.Image = (System.Drawing.Image)resources.GetObject("pbGeneral.Image");
+			this.pbGeneral.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (Byte)(0));
+			this.pbGeneral.Image = (System.Drawing.Image)(resources.GetObject("pbGeneral.Image")); 
 			this.pbGeneral.Location = new System.Drawing.Point(500, 38);
 			this.pbGeneral.Name = "pbGeneral";
 			this.pbGeneral.Size = new System.Drawing.Size(129, 89);
 			this.pbGeneral.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pbGeneral.TabIndex = 57;
 			this.pbGeneral.TabStop = false;
-			//
-			//chkWishList
-			//
-			this.chkWishList.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
-			this.chkWishList.Location = new System.Drawing.Point(488, 220);
-			this.chkWishList.Name = "chkWishList";
-			this.chkWishList.Size = new System.Drawing.Size(96, 24);
-			this.chkWishList.TabIndex = 56;
-			this.chkWishList.Text = "Wish List";
-			this.ttBase.SetToolTip(this.chkWishList, "Is this a WishList item?");
-			//
-			//lblPurchased
-			//
-			this.lblPurchased.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.lblPurchased.AutoSize = true;
-			this.lblPurchased.Location = new System.Drawing.Point(12, 223);
-			this.lblPurchased.Name = "lblPurchased";
-			this.lblPurchased.Size = new System.Drawing.Size(76, 16);
-			this.lblPurchased.TabIndex = 53;
-			this.lblPurchased.Text = "Purchased";
-			//
-			//dtpPurchased
-			//
-			this.dtpPurchased.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.dtpPurchased.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpPurchased.Location = new System.Drawing.Point(92, 221);
-			this.dtpPurchased.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
-			this.dtpPurchased.Name = "dtpPurchased";
-			this.dtpPurchased.Size = new System.Drawing.Size(116, 23);
-			this.dtpPurchased.TabIndex = 52;
-			this.dtpPurchased.Tag = "Nulls";
-			this.ttBase.SetToolTip(this.dtpPurchased, "Date this item was purchased");
-			//
-			//lblInventoried
-			//
-			this.lblInventoried.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.lblInventoried.AutoSize = true;
-			this.lblInventoried.Location = new System.Drawing.Point(248, 223);
-			this.lblInventoried.Name = "lblInventoried";
-			this.lblInventoried.Size = new System.Drawing.Size(83, 16);
-			this.lblInventoried.TabIndex = 51;
-			this.lblInventoried.Text = "Inventoried";
-			//
-			//dtpInventoried
-			//
-			this.dtpInventoried.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.dtpInventoried.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpInventoried.Location = new System.Drawing.Point(336, 221);
-			this.dtpInventoried.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
-			this.dtpInventoried.Name = "dtpInventoried";
-			this.dtpInventoried.Size = new System.Drawing.Size(116, 23);
-			this.dtpInventoried.TabIndex = 50;
-			this.dtpInventoried.Tag = "Nulls";
-			this.ttBase.SetToolTip(this.dtpInventoried, "Date this item was last inventoried (i.e. location confirmed)");
+			// 
+			// chkWishList
+			// 
+			this.chkWishList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkWishList.Location = new System.Drawing.Point(488, 220);
+            this.chkWishList.Name = "chkWishList";
+            this.chkWishList.Size = new System.Drawing.Size(96, 24);
+            this.chkWishList.TabIndex = 56;
+            this.chkWishList.Text = "Wish List";
+            this.ttBase.SetToolTip(this.chkWishList, "Is this a WishList item?");
+            // 
+            // lblPurchased
+            // 
+            this.lblPurchased.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPurchased.AutoSize = true;
+            this.lblPurchased.Location = new System.Drawing.Point(12, 223);
+            this.lblPurchased.Name = "lblPurchased";
+            this.lblPurchased.Size = new System.Drawing.Size(76, 16);
+            this.lblPurchased.TabIndex = 53;
+            this.lblPurchased.Text = "Purchased";
+            // 
+            // dtpPurchased
+            // 
+            this.dtpPurchased.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpPurchased.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpPurchased.Location = new System.Drawing.Point(92, 221);
+            this.dtpPurchased.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
+            this.dtpPurchased.Name = "dtpPurchased";
+            this.dtpPurchased.Size = new System.Drawing.Size(116, 20);
+            this.dtpPurchased.TabIndex = 52;
+            this.dtpPurchased.Tag = "Nulls";
+            this.ttBase.SetToolTip(this.dtpPurchased, "Date this item was purchased");
+            // 
+            // lblInventoried
+            // 
+            this.lblInventoried.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblInventoried.AutoSize = true;
+            this.lblInventoried.Location = new System.Drawing.Point(248, 223);
+            this.lblInventoried.Name = "lblInventoried";
+            this.lblInventoried.Size = new System.Drawing.Size(83, 16);
+            this.lblInventoried.TabIndex = 51;
+            this.lblInventoried.Text = "Inventoried";
+            // 
+            // dtpInventoried
+            // 
+            this.dtpInventoried.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpInventoried.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpInventoried.Location = new System.Drawing.Point(336, 221);
+            this.dtpInventoried.MinDate = new System.DateTime(1963, 7, 31, 0, 0, 0, 0);
+            this.dtpInventoried.Name = "dtpInventoried";
+            this.dtpInventoried.Size = new System.Drawing.Size(116, 20);
+            this.dtpInventoried.TabIndex = 50;
+            this.dtpInventoried.Tag = "Nulls";
+            this.ttBase.SetToolTip(this.dtpInventoried, "Date this item was last inventoried (i.e. location confirmed)");
 			//
 			//cbLocation
 			//
-			this.cbLocation.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
+			this.cbLocation.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 			this.cbLocation.Location = new System.Drawing.Point(88, 156);
 			this.cbLocation.Name = "cbLocation";
 			this.cbLocation.Size = new System.Drawing.Size(520, 24);
 			this.cbLocation.TabIndex = 49;
 			this.cbLocation.Text = "cbLocation";
 			this.ttBase.SetToolTip(this.cbLocation, "Current location of this item (i.e. Where is it?)");
-			//
-			//lblLocation
-			//
-			this.lblLocation.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.lblLocation.AutoSize = true;
-			this.lblLocation.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.lblLocation.Location = new System.Drawing.Point(12, 159);
-			this.lblLocation.Name = "lblLocation";
-			this.lblLocation.Size = new System.Drawing.Size(64, 16);
-			this.lblLocation.TabIndex = 48;
-			this.lblLocation.Text = "Location";
-			//
-			//txtAlphaSort
-			//
-			this.txtAlphaSort.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.txtAlphaSort.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtAlphaSort.Location = new System.Drawing.Point(88, 188);
-			this.txtAlphaSort.Name = "txtAlphaSort";
-			this.txtAlphaSort.Size = new System.Drawing.Size(520, 23);
-			this.txtAlphaSort.TabIndex = 47;
-			this.txtAlphaSort.Visible = false;
-			//
-			//lblAlphaSort
-			//
-			this.lblAlphaSort.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-			this.lblAlphaSort.AutoSize = true;
-			this.lblAlphaSort.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.lblAlphaSort.Location = new System.Drawing.Point(8, 190);
-			this.lblAlphaSort.Name = "lblAlphaSort";
-			this.lblAlphaSort.Size = new System.Drawing.Size(72, 16);
-			this.lblAlphaSort.TabIndex = 46;
-			this.lblAlphaSort.Text = "AlphaSort";
-			//
-			//tpNotes
-			//
+			// 
+			// lblLocation
+			// 
+			this.lblLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(12, 159);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(64, 16);
+            this.lblLocation.TabIndex = 48;
+            this.lblLocation.Text = "Location";
+            // 
+            // txtAlphaSort
+            // 
+            this.txtAlphaSort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAlphaSort.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtAlphaSort.Location = new System.Drawing.Point(88, 188);
+            this.txtAlphaSort.Name = "txtAlphaSort";
+            this.txtAlphaSort.Size = new System.Drawing.Size(520, 20);
+            this.txtAlphaSort.TabIndex = 47;
+            this.txtAlphaSort.Visible = false;
+            // 
+            // lblAlphaSort
+            // 
+            this.lblAlphaSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAlphaSort.AutoSize = true;
+            this.lblAlphaSort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlphaSort.Location = new System.Drawing.Point(8, 190);
+            this.lblAlphaSort.Name = "lblAlphaSort";
+            this.lblAlphaSort.Size = new System.Drawing.Size(72, 16);
+            this.lblAlphaSort.TabIndex = 46;
+            this.lblAlphaSort.Text = "AlphaSort";
+			// 
+			// tpNotes
+			// 
 			this.tpNotes.Controls.Add(this.rtfNotes);
 			this.tpNotes.Location = new System.Drawing.Point(4, 25);
 			this.tpNotes.Name = "tpNotes";
@@ -1298,12 +1274,14 @@ namespace TCBase
 			this.tpNotes.TabIndex = 1;
 			this.tpNotes.Text = "Notes";
 			this.tpNotes.Visible = false;
-			//
-			//rtfNotes
-			//
+			// 
+			// rtfNotes
+			// 
 			this.rtfNotes.AcceptsTab = true;
-			this.rtfNotes.Anchor = (System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right);
-			this.rtfNotes.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
+			this.rtfNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.rtfNotes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rtfNotes.Location = new System.Drawing.Point(4, 4);
 			this.rtfNotes.Name = "rtfNotes";
 			this.rtfNotes.Size = new System.Drawing.Size(652, 268);
@@ -1312,7 +1290,6 @@ namespace TCBase
 			//
 			//timClock
 			//
-			this.timClock.Enabled = false;
 			this.timClock.Interval = 1000;
 			//
 			//btnExit
@@ -1335,225 +1312,213 @@ namespace TCBase
 			this.btnCancel.Size = new System.Drawing.Size(75, 25);
 			this.btnCancel.TabIndex = 26;
 			this.btnCancel.Text = "Cancel";
-			//
-			//mnuMain
-			//
+			// 
+			// mnuMain
+			// 
 			this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-				this.mnuFile,
-				this.mnuRecords
-			});
-			//
-			//mnuFile
-			//
-			this.mnuFile.Index = 0;
-			this.mnuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-				this.mnuFileReport,
-				this.mnuFileSQL,
-				this.mnuFileSep,
-				this.mnuFileExit
-			});
-			this.mnuFile.Text = "&File";
-			//
-			//mnuFileReport
-			//
-			this.mnuFileReport.Index = 0;
-			this.mnuFileReport.Text = "&Report";
-			//
-			//mnuFileSQL
-			//
-			this.mnuFileSQL.Index = 1;
-			this.mnuFileSQL.Text = "&SQL";
-			//
-			//mnuFileSep
-			//
-			this.mnuFileSep.Index = 2;
-			this.mnuFileSep.Text = "-";
-			//
-			//mnuFileExit
-			//
-			this.mnuFileExit.Index = 3;
-			this.mnuFileExit.Text = "E&xit";
-			//
-			//mnuRecords
-			//
-			this.mnuRecords.Index = 1;
-			this.mnuRecords.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-				this.mnuRecordsSelect,
-				this.mnuRecordsSep1,
-				this.mnuRecordsNew,
-				this.mnuRecordsCopy,
-				this.mnuRecordsModify,
-				this.mnuRecordsDelete,
-				this.mnuRecordsSep2,
-				this.mnuRecordsRefresh,
-				this.mnuRecordsSep3,
-				this.mnuRecordsFilter,
-                this.mnuRecordsSort,
-				this.mnuRecordsHistory,
-				this.mnuRecordsList
-			});
-			this.mnuRecords.Text = "&Records";
-			//
-			//mnuRecordsSelect
-			//
-			this.mnuRecordsSelect.Index = 0;
-			this.mnuRecordsSelect.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftR;
-			this.mnuRecordsSelect.Text = "&Select";
-			//
-			//mnuRecordsSep1
-			//
-			this.mnuRecordsSep1.Index = 1;
-			this.mnuRecordsSep1.Text = "-";
-			//
-			//mnuRecordsNew
-			//
-			this.mnuRecordsNew.Index = 2;
-			this.mnuRecordsNew.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftN;
-			this.mnuRecordsNew.Text = "&New";
-			//
-			//mnuRecordsCopy
-			//
-			this.mnuRecordsCopy.Index = 3;
-			this.mnuRecordsCopy.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftI;
-			this.mnuRecordsCopy.Text = "&Copy/Append";
-			//
-			//mnuRecordsModify
-			//
-			this.mnuRecordsModify.Index = 4;
-			this.mnuRecordsModify.Shortcut = System.Windows.Forms.Shortcut.F2;
-			this.mnuRecordsModify.Text = "&Modify";
-			//
-			//mnuRecordsDelete
-			//
-			this.mnuRecordsDelete.Index = 5;
-			this.mnuRecordsDelete.Text = "&Delete";
-			//
-			//mnuRecordsSep2
-			//
-			this.mnuRecordsSep2.Index = 6;
-			this.mnuRecordsSep2.Text = "-";
-			//
-			//mnuRecordsRefresh
-			//
-			this.mnuRecordsRefresh.Index = 7;
-			this.mnuRecordsRefresh.Text = "&Refresh";
-			this.mnuRecordsRefresh.Visible = false;
-			//
-			//mnuRecordsSep3
-			//
-			this.mnuRecordsSep3.Index = 8;
-			this.mnuRecordsSep3.Text = "-";
-			this.mnuRecordsSep3.Visible = false;
-			//
-			//mnuRecordsFilter
-			//
-			this.mnuRecordsFilter.Index = 9;
-			this.mnuRecordsFilter.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftF;
-			this.mnuRecordsFilter.Text = "&Filter";
-			this.mnuRecordsFilter.Visible = false;
-            //
-            //mnuRecordsSort
-            //
+            this.mnuFile,
+            this.mnuRecords});
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.Index = 0;
+            this.mnuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuFileReport,
+            this.mnuFileSQL,
+            this.mnuFileSep,
+            this.mnuFileExit});
+            this.mnuFile.Text = "&File";
+            // 
+            // mnuFileReport
+            // 
+            this.mnuFileReport.Index = 0;
+            this.mnuFileReport.Text = "&Report";
+            // 
+            // mnuFileSQL
+            // 
+            this.mnuFileSQL.Index = 1;
+            this.mnuFileSQL.Text = "&SQL";
+            // 
+            // mnuFileSep
+            // 
+            this.mnuFileSep.Index = 2;
+            this.mnuFileSep.Text = "-";
+            // 
+            // mnuFileExit
+            // 
+            this.mnuFileExit.Index = 3;
+            this.mnuFileExit.Text = "E&xit";
+            // 
+            // mnuRecords
+            // 
+            this.mnuRecords.Index = 1;
+            this.mnuRecords.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuRecordsSelect,
+            this.mnuRecordsSep1,
+            this.mnuRecordsNew,
+            this.mnuRecordsCopy,
+            this.mnuRecordsModify,
+            this.mnuRecordsDelete,
+            this.mnuRecordsSep2,
+            this.mnuRecordsRefresh,
+            this.mnuRecordsSep3,
+            this.mnuRecordsFilter,
+            this.mnuRecordsSort,
+            this.mnuRecordsHistory,
+            this.mnuRecordsList});
+            this.mnuRecords.Text = "&Records";
+            // 
+            // mnuRecordsSelect
+            // 
+            this.mnuRecordsSelect.Index = 0;
+            this.mnuRecordsSelect.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftR;
+            this.mnuRecordsSelect.Text = "&Select";
+            // 
+            // mnuRecordsSep1
+            // 
+            this.mnuRecordsSep1.Index = 1;
+            this.mnuRecordsSep1.Text = "-";
+            // 
+            // mnuRecordsNew
+            // 
+            this.mnuRecordsNew.Index = 2;
+            this.mnuRecordsNew.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftN;
+            this.mnuRecordsNew.Text = "&New";
+            // 
+            // mnuRecordsCopy
+            // 
+            this.mnuRecordsCopy.Index = 3;
+            this.mnuRecordsCopy.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftI;
+            this.mnuRecordsCopy.Text = "&Copy/Append";
+            // 
+            // mnuRecordsModify
+            // 
+            this.mnuRecordsModify.Index = 4;
+            this.mnuRecordsModify.Shortcut = System.Windows.Forms.Shortcut.F2;
+            this.mnuRecordsModify.Text = "&Modify";
+            // 
+            // mnuRecordsDelete
+            // 
+            this.mnuRecordsDelete.Index = 5;
+            this.mnuRecordsDelete.Text = "&Delete";
+            // 
+            // mnuRecordsSep2
+            // 
+            this.mnuRecordsSep2.Index = 6;
+            this.mnuRecordsSep2.Text = "-";
+            // 
+            // mnuRecordsRefresh
+            // 
+            this.mnuRecordsRefresh.Index = 7;
+            this.mnuRecordsRefresh.Text = "&Refresh";
+            this.mnuRecordsRefresh.Visible = false;
+            // 
+            // mnuRecordsSep3
+            // 
+            this.mnuRecordsSep3.Index = 8;
+            this.mnuRecordsSep3.Text = "-";
+            this.mnuRecordsSep3.Visible = false;
+            // 
+            // mnuRecordsFilter
+            // 
+            this.mnuRecordsFilter.Index = 9;
+            this.mnuRecordsFilter.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftF;
+            this.mnuRecordsFilter.Text = "&Filter";
+            this.mnuRecordsFilter.Visible = false;
+            // 
+            // mnuRecordsSort
+            // 
             this.mnuRecordsSort.Index = 10;
             this.mnuRecordsSort.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
             this.mnuRecordsSort.Text = "&Sort";
             this.mnuRecordsSort.Visible = false;
-			//
-			//mnuRecordsHistory
-			//
-			this.mnuRecordsHistory.Index = 11;
-			this.mnuRecordsHistory.Text = "&History";
-			//
-			//mnuRecordsList
-			//
-			this.mnuRecordsList.Index = 12;
-			this.mnuRecordsList.Shortcut = System.Windows.Forms.Shortcut.F3;
-			this.mnuRecordsList.Text = "&List";
-			//
-			//mnuFileTrace
-			//
-			this.mnuFileTrace.Index = -1;
-			this.mnuFileTrace.Text = "&Trace";
-            //
-            //StatusStrip1
-            //
-            this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsslblRows, this.tsslblRowFilter, this.tsslblSort });
+            // 
+            // mnuRecordsHistory
+            // 
+            this.mnuRecordsHistory.Index = 11;
+            this.mnuRecordsHistory.Text = "&History";
+            // 
+            // mnuRecordsList
+            // 
+            this.mnuRecordsList.Index = 12;
+            this.mnuRecordsList.Shortcut = System.Windows.Forms.Shortcut.F3;
+            this.mnuRecordsList.Text = "&List";
+            // 
+            // mnuFileTrace
+            // 
+            this.mnuFileTrace.Index = -1;
+            this.mnuFileTrace.Text = "&Trace";
+            // 
+            // StatusStrip1
+            // 
+            this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslblRows,
+            this.tsslblRowFilter,
+            this.tsslblSort});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 244);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(444, 22);
+            this.StatusStrip1.Size = new System.Drawing.Size(296, 22);
             this.StatusStrip1.TabIndex = 1;
             this.StatusStrip1.Text = "StatusStrip1";
-            //
-            //tsslblRows
-            //
+            // 
+            // tsslblRows
+            // 
             this.tsslblRows.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
             this.tsslblRows.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslblRows.Name = "tsslblRows";
             this.tsslblRows.Size = new System.Drawing.Size(47, 17);
             this.tsslblRows.Text = "Rows: 0";
-            //
-            //tsslblRowFilter
-            //
+            // 
+            // tsslblRowFilter
+            // 
             this.tsslblRowFilter.AutoToolTip = true;
             this.tsslblRowFilter.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
             this.tsslblRowFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslblRowFilter.Name = "tsslblRowFilter";
             this.tsslblRowFilter.Size = new System.Drawing.Size(62, 17);
             this.tsslblRowFilter.Text = "RowFilter: ";
-            //
-            //tsslblSort
-            //
+            // 
+            // tsslblSort
+            // 
             this.tsslblSort.AutoToolTip = true;
             this.tsslblSort.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
             this.tsslblSort.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslblSort.Name = "tsslblSort";
             this.tsslblSort.Size = new System.Drawing.Size(31, 17);
             this.tsslblSort.Text = "Sort:";
-            //
-            //frmTCStandard
-            //
+            // 
+            // frmTCStandard
+            // 
             this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
-			this.ClientSize = new System.Drawing.Size(296, 266);
-			this.Controls.Add(this.btnLast);
-			this.Controls.Add(this.btnFirst);
-			this.Controls.Add(this.txtCaption);
-			this.Controls.Add(this.btnNext);
-			this.Controls.Add(this.btnPrev);
-			this.Controls.Add(this.sbStatus);
-			this.Controls.Add(this.btnOK);
-			this.Controls.Add(this.txtID);
-			this.Controls.Add(this.lblID);
-			this.Controls.Add(this.tbMain);
-			this.Controls.Add(this.tcMain);
-			this.Controls.Add(this.btnExit);
-			this.Controls.Add(this.btnCancel);
+            this.ClientSize = new System.Drawing.Size(296, 266);
+            this.Controls.Add(this.txtCaption);
+            this.Controls.Add(this.sbStatus);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.tcMain);
             this.Controls.Add(this.StatusStrip1);
-			this.Font = new System.Drawing.Font("Verdana", 9.75f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, Convert.ToByte(0));
-			this.KeyPreview = true;
-			this.Menu = this.mnuMain;
-			this.Name = "frmTCStandard";
-			this.Text = "frmTCStandard";
-			((System.ComponentModel.ISupportInitialize)this.epBase).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpPosition).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpMode).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpFilter).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpSort).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpStatus).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpMessage).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpTrace).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpTime).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.sbpEndBorder).EndInit();
-			this.tcMain.ResumeLayout(false);
-			this.tpGeneral.ResumeLayout(false);
-			this.gbGeneral.ResumeLayout(false);
-			this.gbGeneral.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)this.pbGeneral2).EndInit();
-			((System.ComponentModel.ISupportInitialize)this.pbGeneral).EndInit();
-			this.tpNotes.ResumeLayout(false);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyPreview = true;
+            this.Location = new System.Drawing.Point(0, 0);
+            this.Menu = this.mnuMain;
+            this.Name = "frmTCStandard";
+            this.Text = "frmTCStandard";
+            ((System.ComponentModel.ISupportInitialize)(this.epBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpSort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpMessage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpTrace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbpEndBorder)).EndInit();
+            this.tcMain.ResumeLayout(false);
+            this.tpNotes.ResumeLayout(false);
             this.StatusStrip1.ResumeLayout(false);
             this.StatusStrip1.PerformLayout();
             this.ResumeLayout(false);
-			this.PerformLayout();
+            this.PerformLayout();
 
 		}
 		#endregion
